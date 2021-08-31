@@ -1,0 +1,10 @@
+<% @reports.each do |report| %>
+  <li><%= report.user.first_name.capitalize %></li>
+  <li><%= report.description %></li>
+    <li><% if report.photo.attached? %>
+          <%= cl_image_tag report.photo.key, class: 'card-product-img', height: 300, width: 350, crop: :fill %>
+      <% else %>
+        <%= image_tag("noimage.jpg", class: 'card-product-img', height: 300, width: 350, crop: :fill) %>
+      <% end %>
+    </li>
+<% end %>

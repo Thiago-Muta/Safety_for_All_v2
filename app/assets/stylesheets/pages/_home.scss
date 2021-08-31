@@ -1,1 +1,15 @@
 // Specific CSS for your home-page
+#fundo {
+  background-image: asset-url('fundo.jpg');
+  height: calc(100vh - 60px);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#home {
+  color: greenyellow
+}

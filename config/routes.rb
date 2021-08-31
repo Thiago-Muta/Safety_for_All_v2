@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-
+  resources :reports do
+    resources :reviews, only: [:new, :create]
+    patch 'close', to: 'reports#close'
+  end
+  resources :reviews, only: [:show, :destroy]
 
 end

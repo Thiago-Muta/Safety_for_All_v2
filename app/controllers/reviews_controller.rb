@@ -5,22 +5,23 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @report = Reports.find(params[:report_id])
+    @report = Report.find(params[:report_id])
     @review = Review.new
   end
 
   def create
-    @report = Reports.find(params[:report_id])
+    @report = Report.find(params[:report_id])
     if @report.status
       @review = Review.new(review_params)
       @review.report = @report
+      @review.user = current_user
       if @review.save
         redirect_to report_path(@report), notice: 'review was successfully created.'
       else
         render :new
       end
     else
-      redirect_to @auction, alert: 'Auction already closed!'
+      redirect_to @report, alert: 'Report already Finished!'
     end
   end
 

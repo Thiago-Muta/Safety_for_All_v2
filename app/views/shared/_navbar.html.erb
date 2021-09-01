@@ -21,7 +21,10 @@
           <%= link_to "Denunciar", new_report_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Ver Mapa", reports_path, class: "nav-link" %>
+          <%= link_to "Denuncias", reports_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Ver Mapa", show_map_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <% if current_user.photo.attached? %>

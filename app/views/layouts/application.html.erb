@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SafetyForAll</title>
+    <title>Safety For All</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,6 +14,18 @@
   </head>
 
   <body>
+    <!--Dark Mode Switch-->
+    <div class="theme-switch-wrapper">
+      <span id="toggle-icon">
+        <span class="toggle-text">Light Mode</span>
+        <i class="fa fa-sun"></i>
+      </span>
+      <label class="theme-switch">
+        <input type="checkbox" >
+        <div class="slider round"></div>
+      </label>
+      </span>
+    </div>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 

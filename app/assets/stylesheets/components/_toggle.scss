@@ -1,29 +1,58 @@
 /* Dark Mode Toggle */
 
-.theme-switch-wrapper {
-  display: flex;
-  align-items: center;
-  z-index: 100;
-  position: fixed;
-  right: 25px;
-  top: 30px;
+input [ type="checkbox"] {
+  -webkit-appearance: none;
+  visibility: hidden;
+  display: none;
 }
 
-.theme-switch-wrapper span {
-  margin-right: 10px;
-  font-size: 1rem;
-}
-
-.toggle-text {
+.check {
   position: relative;
-  top: -4px;
-  right: 5px;
-  color: var(--on-background);
+  display: block;
+  width: 40px;
+  height: 20px;
+  background: #092c3e;
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: ease-in 0.5s;
 }
 
-.theme-switch {
-  display: inline-block;
-  height: 34px;
-  position: relative;
-  width: 60px;
+input [ type="checkbox"]:checked ~ .check {
+  background: #fff;
+  box-shadow: 0 0 0 1200px #092c3e;
+}
+
+.check:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: #fff;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+input [ type="checkbox"]:checked ~ .check:before {
+  transform: translateX(-50px);
+}
+
+.check:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #092c3e;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: 0.5s;
+  transform: translateX(-50px);
+
+}
+
+input [ type="checkbox"]:checked ~ .check:after {
+  transform: translateX(0px);
 }

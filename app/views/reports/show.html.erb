@@ -29,5 +29,6 @@
   <% end %>
 
   <%= link_to "voltar", reports_path, class: "btn px-5" %>
+  <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn" %>
 
 </div>

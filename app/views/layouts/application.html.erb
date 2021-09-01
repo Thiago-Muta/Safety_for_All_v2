@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SafetyForAll</title>
+    <title>Safety For All</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,6 +16,11 @@
   </head>
 
   <body>
+    <!--Dark Mode Switch-->
+      <label for="">
+        <input type="checkbox">
+        <span class="check"></span>
+      </label>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 

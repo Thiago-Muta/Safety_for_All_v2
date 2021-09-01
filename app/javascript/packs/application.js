@@ -37,8 +37,3 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initAutocomplete();
 });
-
-
-// document.addEventListener('turbolinks:load', () => {
-
-// })

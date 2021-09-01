@@ -16,19 +16,26 @@
   <%= link_to "Criar uma review", new_report_review_path(@report), class: "btn px-5" %>
 
 
-  <% if @reviews.present? %>
-    <strong>Total reviews: <%= @reviews.count %></strong>
-  <%else%>
-    NO reviews yet!
-  <% end %>
 
-  <% if @report.status %>
-    <%= link_to "review", new_report_review_path(@report), method: :post, class: "btn" if @report.user != current_user %>
-  <% else %>
-    <p>Report Solved!</p>
-  <% end %>
+    <% if @report.reviews.empty? %>
+      NO reviews yet!
+    <%else%>
+      <div id="reviews-container" data-report-id='<%= @report.id %>'>
+        <% @report.reviews.each do |review|%>
+        <%= render 'reviews/review', review: review %>
+        <% end %>
+      </div>
+      <strong>Total reviews: <span id="review-count"> <%= @report.reviews.length %></span></strong>
+    <% end %>
 
-  <%= link_to "voltar", reports_path, class: "btn px-5" %>
-  <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn" %>
+    <% if @report.status %>
+      <%= link_to "review", new_report_review_path(@report), method: :post, class: "btn" if @report.user != current_user %>
+    <% else %>
+      <p>Report Solved!</p>
+    <% end %>
+
+    <%= link_to "voltar", reports_path, class: "btn px-5" %>
+    <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn" %>
+
 
 </div>

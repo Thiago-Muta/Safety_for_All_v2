@@ -1,23 +1,17 @@
-<div class="container text-center">
+<div class="container text-center" id="reports-container">
   <% @reports.each do |report| %>
-    <li><%= report.user.first_name.capitalize %></li>
-    <li><%= report.description %></li>
-      <li><% if report.photo.attached? %>
-            <%= cl_image_tag report.photo.key, class: 'card-product-img', height: 300, width: 350, crop: :fill %>
-        <% else %>
-          <%= image_tag("noimage.jpg", class: 'card-product-img', height: 300, width: 350, crop: :fill) %>
-        <% end %>
-      </li>
-      <%= link_to "Ver detalhes", report_path(report), class: "btn px-5" %>
-      <%= link_to "Criar uma review", new_report_review_path(report), class: "btn px-5" %>
-
+   <%= render 'report', report: report %>
   <% end %>
+</div>
 
+<div id="reports">
 
 </div>
 
-  <div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
+
+<div id="map"
+  style="width: 100%; height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+  data-report=''
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>

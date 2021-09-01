@@ -10,5 +10,14 @@
       </li>
       <%= link_to "Ver detalhes", report_path(report), class: "btn px-5" %>
       <%= link_to "Criar uma review", new_report_review_path(report), class: "btn px-5" %>
+
   <% end %>
+
+
 </div>
+
+  <div id="map"
+     style="width: 100%; height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>

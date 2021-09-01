@@ -4,8 +4,8 @@ class ReportsController < ApplicationController
     @markers = @reports.geocoded.map do |report|
       {
         lat: report.latitude,
-        lng: report.longitude
-        # info_window: render_to_string(partial: "info_window", locals: { report: report })
+        lng: report.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { report: report })
       }
     end
   end
@@ -15,8 +15,8 @@ class ReportsController < ApplicationController
     @markers = @reports.geocoded.map do |report|
       {
         lat: report.latitude,
-        lng: report.longitude
-        # info_window: render_to_string(partial: "reports/info_window", locals: { report: report })
+        lng: report.longitude,
+        info_window: render_to_string(partial: "reports/info_window", locals: { report: report })
       }
     end
   end

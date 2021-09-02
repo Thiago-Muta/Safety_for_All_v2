@@ -5,7 +5,8 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @report = Report.find(params[:report_id])
+    @report = Report.find_by(id: params[:report_id])
+    redirect_to reports_path, notice: 'Report not found!' if @report.nil?
     @review = Review.new
   end
 

@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   def index
-    @reports = Report.all
+    @reports = Report.all.order(:created_at)
     @markers = @reports.geocoded.map do |report|
       {
         lat: report.latitude,
@@ -38,7 +38,7 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.user = current_user
     if @report.save
-      ActionCable.server.broadcast('reports', {json: @report, partial: render_to_string(partial: 'report', locals: { report: @report })})
+      ActionCable.server.broadcast('reports', { action: 'create', json: @report, partial: render_to_string(partial: 'report', locals: { report: @report })})
       redirect_to reports_path(@report)
     else
       render :new
@@ -47,15 +47,15 @@ class ReportsController < ApplicationController
 
   def destroy
     @report = Report.find(params[:id])
+    ActionCable.server.broadcast('reports', { action: 'destroy', json: @report })
     @report.destroy
     redirect_to reports_path
   end
 
-
   def close
-    @report = Report.find(params[:id])
-    @report.destroy
-    redirect_to report_path
+    @report = Report.find(params[:report_id])
+    @report.update!(status: false)
+    redirect_to reports_path
   end
 
   private

@@ -1,6 +1,6 @@
 // Specific CSS for your home-page
 #fundo {
-  background-image: asset-url('fundo.jpg');
+  background-image: asset-url('seg.jpg');
   height: calc(100vh - 60px);
   background-size: cover;
   background-position: center;
@@ -11,5 +11,6 @@
 }
 
 #home {
-  color: greenyellow
+  color: rgb(255, 0, 191);
+  font-size: 600px;
 }

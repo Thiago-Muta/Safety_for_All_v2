@@ -1,4 +1,4 @@
-<div class="card-product">
+<div class="card-product" id="report-<%=report.id %>">
 
   <% if report.photo.attached? %>
     <%= cl_image_tag report.photo.key, class: 'card-product-img', height: 100, width: 350, crop: :fill %>

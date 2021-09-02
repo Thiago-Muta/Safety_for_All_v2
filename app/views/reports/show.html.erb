@@ -12,11 +12,6 @@
   <%= @report.danger_level %>
   <%= @report.user.first_name.capitalize %>
 
-
-  <%= link_to "Criar uma review", new_report_review_path(@report), class: "btn px-5" %>
-
-
-
     <% if @report.reviews.empty? %>
       NO reviews yet!
     <%else%>
@@ -28,14 +23,13 @@
       <strong>Total reviews: <span id="review-count"> <%= @report.reviews.length %></span></strong>
     <% end %>
 
-    <% if @report.status %>
-      <%= link_to "review", new_report_review_path(@report), method: :post, class: "btn" if @report.user != current_user %>
+    <% if (@report.status && @report.user != current_user)%>
+      <%= link_to "Criar uma review", new_report_review_path(@report), class: "btn px-5" %>
     <% else %>
       <p>Report Solved!</p>
     <% end %>
 
     <%= link_to "voltar", reports_path, class: "btn px-5" %>
     <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn" %>
-
 
 </div>

@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
       {
         lat: report.latitude,
         lng: report.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { report: report })
+        info_window: render_to_string(partial: "reports/info_window", locals: { report: report })
       }
     end
   end
@@ -22,8 +22,12 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @report = Report.find(params[:id])
-    @reviews = @report.reviews
+    @report = Report.find_by(id: params[:id])
+    if @report.nil?
+      redirect_to reports_path
+    else
+      @reviews = @report.reviews
+    end
   end
 
   def new
@@ -34,6 +38,7 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.user = current_user
     if @report.save
+      ActionCable.server.broadcast('reports', {json: @report, partial: render_to_string(partial: 'report', locals: { report: @report })})
       redirect_to reports_path(@report)
     else
       render :new

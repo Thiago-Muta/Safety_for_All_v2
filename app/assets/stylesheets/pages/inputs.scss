@@ -1,17 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 
 
-.color1 {
-  --accent-color: #f50b86
-}
-
-.color2 {
-  --accent-color: #ff6f00
-}
-
-.color3 {
-  --accent-color: #a3f307
-}
+.color1{--accent-color:#f50b86}
+.color2{--accent-color:#ff6f00}
+.color3{--accent-color:#a3f307}
 
 *,
 *::before,
@@ -20,7 +12,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 .inputsBody {
   font-size: 24px;
   background: var(--dark-color);
@@ -33,12 +24,10 @@
   gap: 2em;
   user-select: none;
 }
-
 h1 {
   text-align: center;
   font-size: 1.5em;
 }
-
 .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -47,9 +36,8 @@ h1 {
   padding: 2em;
   gap: 4em 2em;
 }
-
-section {
-  display: grid;
+section{
+  display:grid;
   place-items: center;
 }
 
@@ -60,7 +48,6 @@ section {
   gap: 1em;
   position: relative;
 }
-
 .radio-group .bullet {
   position: absolute;
   width: 1.5em;
@@ -71,11 +58,9 @@ section {
   left: 0;
   transition: 0.5s top ease;
 }
-
 .radio-group input {
   display: none;
 }
-
 .radio-group label {
   display: flex;
   gap: 0.5em;
@@ -84,7 +69,6 @@ section {
   white-space: nowrap;
   cursor: pointer;
 }
-
 .radio-group label::before {
   content: "";
   width: 1.5em;
@@ -92,8 +76,7 @@ section {
   border: 0.125em solid var(--accent-color);
   border-radius: 50%;
 }
-
-.radio-group input:checked+label {
+.radio-group input:checked + label {
   color: var(--accent-color);
 }
 
@@ -103,11 +86,9 @@ section {
   flex-direction: column;
   gap: 1em;
 }
-
 .checkbox-group input {
   display: none;
 }
-
 .checkbox-group label {
   display: flex;
   gap: 0.5em;
@@ -117,7 +98,6 @@ section {
   cursor: pointer;
   position: relative;
 }
-
 .checkbox-group label::before {
   content: "";
   width: 1.5em;
@@ -125,8 +105,7 @@ section {
   border: 0.125em solid var(--accent-color);
   border-radius: 0.25em;
 }
-
-.checkbox-group input:checked+label {
+.checkbox-group input:checked + label {
   color: var(--accent-color);
 }
 
@@ -142,7 +121,6 @@ section {
   transform: scale(0);
   transition: 0.5s transform ease;
 }
-
-.checkbox-group input:checked+label::after {
+.checkbox-group input:checked + label::after {
   transform: scale(1);
 }

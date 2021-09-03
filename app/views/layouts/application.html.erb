@@ -9,9 +9,9 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-       <%#trocar o application por default se a limpeza de cache nap funcionar 'rm -rf tmp/cache/assets/' %>
     <%= stylesheet_pack_tag 'application' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= javascript_include_tag "main.js", "data-turbolinks-track" => true  %>
   </head>
 
   <body>
@@ -87,7 +87,6 @@
     				<div class="nav-left">
     					<a href="#home"><span class="ion-ios-home-outline"></span> Home</a>
     					<a href="#alarm"><span class="ion-ios-list-outline"></span> My Reports</a>
-    					<a href="#chats"><span class="ion-ios-chatboxes-outline"></span> Chats</a>
     					<a href="#profile"><span class="ion-ios-person-outline"></span> Profile | Login</a>
     					<a href="#settings" onclick='openModalSettings()'><span class="ion-ios-gear-outline"></span> Settings</a>
     					<a href="#credits" onclick='openModalCredits()' id='modalCredits'><span class="ion-ios-information-outline"></span> Credits</a>
@@ -102,10 +101,6 @@
     			<a href="#compose" class="nav-item nav-count-2"><img src='../assets/imgs/assault.jpg' style='width:80%' title="Assalto" onclick='openModalReport("Assalto")'/></a>
     			<a href="#chats" class="nav-item nav-count-3"><img src='../assets/imgs/kidnap.jpg' style='width:80%' title="Sequestro" onclick='openModalReport("Sequestro")'/></a>
     			<a href="#alarm" class="nav-item nav-count-4"><img src='../assets/imgs/theif.jpg' style='width:80%' title="Furto" onclick='openModalReport("Furto")'/></a>
-    			<!-- <a href="#profile" class="nav-item nav-count-1"><i class="ion-ios-person-outline"></i><span class="invisible">Profile</span></a>
-    			<a href="#compose" class="nav-item nav-count-2"><i class="ion-ios-compose-outline"></i><span class="invisible">Compose</span></a>
-    			<a href="#chats" class="nav-item nav-count-3"><i class="ion-ios-chatboxes-outline"></i><span class="invisible">Chats</span></a>
-    			<a href="#alarm" class="nav-item nav-count-4"><i class="ion-ios-alarm-outline"></i><span class="invisible">Alarm</span></a> -->
     			<a href="#toggle" class="mask" style="color: #fff;"><i class="ion-ios-plus-empty"></i></a>
     		</div>
     	</div>

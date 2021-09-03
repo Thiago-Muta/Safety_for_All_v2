@@ -15,8 +15,397 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+
+    <div class="mobile-wrap">
+      <dialog id="dialogLogInWarning" class="snackbar">
+        <div class="absolute right-0 top-0">
+            <button type="button" class="btn -icon close">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </button>
+        </div>
+        <h1>Você precisa estar logado para registrar ocorrências!</h1>
+      </dialog>
+      <dialog id="modalReport" class="lg-w-50">
+          <div class="absolute right-0 top-0">
+              <button type="button" class="btn -icon close">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              </button>
+          </div>
+          <div class="dialog-inner">
+              <h1>Registrar Ocorrência - <span id="newRecordTitle"></span></h1>
+              <p>
+                  3 moleques levaram minha bike na esquina da Frei Caneca com a Paim.
+              </p>
+          </div>
+      </dialog>
+      <dialog id="modalCredits" class="lg-w-50">
+          <div class="absolute right-0 top-0">
+              <button type="button" class="btn -icon close">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              </button>
+          </div>
+          <div class="dialog-inner">
+              <h1>About</h1>
+              <p>
+              Thiago Muta em sua apresentação sugeriu a criação do presente aplicativo e nós compramos a ideia, embarcando então na construção do Safety for all. Em duas semanas desenvolvemos uma série de features que aprendemos em nosso período no bootcamp do Le Wagon. A equipe é formada por Allysson Comim, Ana Paula Cury, Tasso Rodrigues and Thiago Muta. Trabalhamos juntos no front e no back end com harmonia e dedicação para apresentar este projeto tão especial.
+              </p>
+          </div>
+      </dialog>
+      <dialog id="modalSettings" class="lg-w-50">
+          <div class="absolute right-0 top-0">
+              <button type="button" class="btn -icon close">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              </button>
+          </div>
+          <div class="dialog-inner">
+              <h1>Settings</h1>
+              <div class='switchContainer'>
+                <label>Toggle Dark Mode &ensp;</label>
+                <label class="switch">
+                    <input onclick="toggleDarkMode()" type="checkbox" id="checkBox">
+                    <span class=" slider"></span>
+                </label>
+              </div><br />
+          </div>
+      </dialog>
+      <div class="mobile clearfix">
+    		<div class="header">
+    			<span class="ion-ios-navicon pull-left"><i></i></span>
+    			<span class="ion-ios-gear-outline pull-right" id='mainPageSettings' onclick='openModalSettings()'></span>
+    			<div class="search">
+    			<form method="post">
+    				<input type="search" placeholder="Search Here">
+    			</form>
+    			</div>
+    		</div>
+    		<div class="sidebar">
+    			<div class="sidebar-overlay"></div>
+    			<div class="sidebar-content">
+    				<div class="top-head">
+    					<div class=""><h1 style="margin-bottom: -2%;">SAFETY</h1><p style='text-align:center'>for all.</p></div>
+    				</div>
+    				<div class="nav-left">
+    					<a href="#home"><span class="ion-ios-home-outline"></span> Home</a>
+    					<a href="#alarm"><span class="ion-ios-list-outline"></span> My Reports</a>
+    					<a href="#chats"><span class="ion-ios-chatboxes-outline"></span> Chats</a>
+    					<a href="#profile"><span class="ion-ios-person-outline"></span> Profile | Login</a>
+    					<a href="#settings" onclick='openModalSettings()'><span class="ion-ios-gear-outline"></span> Settings</a>
+    					<a href="#credits" onclick='openModalCredits()' id='modalCredits'><span class="ion-ios-information-outline"></span> Credits</a>
+    				</div>
+    			</div>
+    		</div>
+        <div id="allMap"></div>
+    		<div class="content">
+    		</div>
+    		<div class="nav">
+    			<a href="#profile" class="nav-item nav-count-1"><img src='../assets/imgs/carcrash.png' style='width:85%' title="Acidente" onclick='openModalReport("Acidente")'/></a>
+    			<a href="#compose" class="nav-item nav-count-2"><img src='../assets/imgs/assault.jpg' style='width:80%' title="Assalto" onclick='openModalReport("Assalto")'/></a>
+    			<a href="#chats" class="nav-item nav-count-3"><img src='../assets/imgs/kidnap.jpg' style='width:80%' title="Sequestro" onclick='openModalReport("Sequestro")'/></a>
+    			<a href="#alarm" class="nav-item nav-count-4"><img src='../assets/imgs/theif.jpg' style='width:80%' title="Furto" onclick='openModalReport("Furto")'/></a>
+    			<!-- <a href="#profile" class="nav-item nav-count-1"><i class="ion-ios-person-outline"></i><span class="invisible">Profile</span></a>
+    			<a href="#compose" class="nav-item nav-count-2"><i class="ion-ios-compose-outline"></i><span class="invisible">Compose</span></a>
+    			<a href="#chats" class="nav-item nav-count-3"><i class="ion-ios-chatboxes-outline"></i><span class="invisible">Chats</span></a>
+    			<a href="#alarm" class="nav-item nav-count-4"><i class="ion-ios-alarm-outline"></i><span class="invisible">Alarm</span></a> -->
+    			<a href="#toggle" class="mask" style="color: #fff;"><i class="ion-ios-plus-empty"></i></a>
+    		</div>
+    	</div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACxDkarbg-ij9QPqzU_p93pnLLOWlYnRo&libraries=visualization"></script> -->
+    <script async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACxDkarbg-ij9QPqzU_p93pnLLOWlYnRo&libraries=visualization">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.js" integrity="sha512-qUIG93zKzcLBVD5RGRbx2PBmbVRu+tJIl+EPLTus0z8I1AMru9sQYdlf6cBacSzYmZVncB9rcc8rYBnazqgrxA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src='../assets/js/main.js'></script>
+    <script src='../assets/js/inputs.js'></script>
+
+    <script>
+
+      function capitalize(word) {
+        return word
+          .toLowerCase()
+          .replace(/\w/, firstLetter => firstLetter.toUpperCase());
+      }
+
+      let locations = [
+        ["Rodoviaria de Brasilia","assalto", "-15.7939286","-47.882813"],
+        ["Congresso Nacional","sequestro", "-15.7997119","-47.8641629"],
+        ["Senado Federal","furto", "-15.7947522","-47.8612561"],
+        ["Sem Titulo","furto", "-15.7647522","-47.8512561"],
+      ];
+
+      let userLatLng;
+      updateCoordinate(function (currentLocation) {
+        initMapAll(currentLocation);
+        userLatLng=currentLocation;
+        console.log('Localizacao encontrada!');
+      });
+
+      function updateCoordinate(callback) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              let returnValue = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+              }
+              callback(returnValue)
+            }
+          )
+      }
+
+      // let map;
+      const iconBase ="../assets/imgs/";
+      const icons = {
+        assalto: {
+          icon: iconBase + "pinAssalt.png",
+        },
+        sequestro: {
+          icon: iconBase + "pinSequestro.png",
+        },
+        furto: {
+          icon: iconBase + "pinFurto.png",
+        },
+        acidente: {
+          icon: iconBase + "pinCarCrash.png",
+        },
+        alert:{
+          icon: iconBase + "pinAlertSmall.png"
+        }
+      };
+
+      let darkModeStyle=[];
+      function toggleDarkMode(mode){
+        if(darkModeStyle.length==0){
+          darkModeStyle=[
+            { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+            { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+            { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+            {
+              featureType: "administrative.locality",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }],
+            },
+            {
+              featureType: "poi",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }],
+            },
+            {
+              featureType: "poi.park",
+              elementType: "geometry",
+              stylers: [{ color: "#263c3f" }],
+            },
+            {
+              featureType: "poi.park",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#6b9a76" }],
+            },
+            {
+              featureType: "road",
+              elementType: "geometry",
+              stylers: [{ color: "#38414e" }],
+            },
+            {
+              featureType: "road",
+              elementType: "geometry.stroke",
+              stylers: [{ color: "#212a37" }],
+            },
+            {
+              featureType: "road",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#9ca5b3" }],
+            },
+            {
+              featureType: "road.highway",
+              elementType: "geometry",
+              stylers: [{ color: "#746855" }],
+            },
+            {
+              featureType: "road.highway",
+              elementType: "geometry.stroke",
+              stylers: [{ color: "#1f2835" }],
+            },
+            {
+              featureType: "road.highway",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#f3d19c" }],
+            },
+            {
+              featureType: "transit",
+              elementType: "geometry",
+              stylers: [{ color: "#2f3948" }],
+            },
+            {
+              featureType: "transit.station",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }],
+            },
+            {
+              featureType: "water",
+              elementType: "geometry",
+              stylers: [{ color: "#17263c" }],
+            },
+            {
+              featureType: "water",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#515c6d" }],
+            },
+            {
+              featureType: "water",
+              elementType: "labels.text.stroke",
+              stylers: [{ color: "#17263c" }],
+            },
+          ];
+          $('p').css('color','white');
+          $('label').css('color','white');
+          $('h1').css('color','white');
+          $('a').css('color','white');
+          $('.sidebar-content').css('background-color','#343434');
+          $('dialog').css('background-color','#343434');
+        }else{
+          darkModeStyle=[];
+          $('p').css('color','black');
+          $('label').css('color','black');
+          $('h1').css('color','black');
+          $('a').css('color','black');
+          $('.sidebar-content').css('background-color','white');
+          $('dialog').css('background-color','white');
+        }
+        initMapAll(userLatLng);
+      }
+
+      function initMapAll(userLatLng) {
+        let bounds = new google.maps.LatLngBounds();
+
+        let mapOptions = {
+          // center: myCoords,
+          zoom: 14,
+          disableDefaultUI: true,
+          styles:darkModeStyle,
+        };
+        const map = new google.maps.Map(document.getElementById('allMap'), mapOptions);
+
+        //USER LOCATION / NEW REPORT
+        lat = userLatLng.latitude;
+        lng = userLatLng.longitude;
+        let myCoords = new google.maps.LatLng(lat, lng);
+        bounds.extend(myCoords);
+
+        // console.log(map.getZoom());
+        let infowindow = new google.maps.InfoWindow();
+
+
+        let marker = new google.maps.Marker({
+          position: myCoords,
+          map: map
+        });
+        google.maps.event.addListener(marker, 'click', (function(marker) {
+          return function() {
+            infowindow.setContent("Você está aqui!");
+            infowindow.open(map, marker);
+          }
+        })(marker));
+
+        // ALL REPORTS PINS
+        $(locations).each(function(i,place){
+          // console.log(place);
+          myCoords = new google.maps.LatLng(parseFloat(place[2]),parseFloat(place[3]));
+          bounds.extend(myCoords);
+          marker = new google.maps.Marker({
+            position: myCoords,
+            icon: icons["alert"].icon,
+            map: map
+          });
+          google.maps.event.addListener(marker, 'click', (function(marker) {
+            return function() {
+              infowindow.setContent(place[0]+"<br /> <b>("+capitalize(place[1])+")</b>");
+              infowindow.open(map, marker);
+            }
+          })(marker));
+          map.fitBounds(bounds);
+        });
+      }
+      let position;
+      document.addEventListener("DOMContentLoaded", function(){
+          console.log('Carregando sua localizacao..');
+          getLatLngIP();
+          setTimeout(function(){
+            initMapAll(userLatLng);
+          },1000)
+      });
+
+      // getLatLngIP(function (currentLocation) {
+      //   console.log(currentLocation);
+      // });
+
+
+      let userLatLng;
+      let userCity;
+      function getLatLngIP(){
+         jQuery.get("http://ipinfo.io", function(response) {
+            userLatLng={
+              "latitude": parseFloat((response.loc).split(',')[0]),
+              "longitude": parseFloat((response.loc).split(',')[1])
+            }
+        }, "jsonp");
+      }
+      // Get the modal report
+      let modalReport = document.getElementById("modalReport");
+      let modalSettings = document.getElementById("modalSettings");
+      let dialogLogInWarning = document.getElementById("dialogLogInWarning");
+      let modalCredits = document.getElementById("modalCredits");
+
+      // Get the <span> element that closes the modal
+      let span = document.getElementsByClassName("close")[0];
+
+      let userLogged=true;
+      function openModalReport(tipoOcorrencia){
+        // modalReport.style.display = "block";
+        if(userLogged){
+          modalReport.showModal();
+          $('#newRecordTitle').html(tipoOcorrencia);
+        }else{
+          dialogLogInWarning.showModal();
+        }
+
+      }
+      function openModalSettings(){
+        modalSettings.showModal();
+        $('.switchContainer').show();
+      }
+
+      function openModalCredits(){
+        modalCredits.showModal();
+      }
+
+      $('[class*="close"]').on('click', function() {
+        modalReport.close();
+        modalSettings.close();
+        dialogLogInWarning.close();
+        modalCredits.close();
+        $('.switchContainer').hide();
+      });
+
+      let targetWindowCloseModal = ["modalReport","modalSettings","dialogLogInWarning"];
+      window.onclick = function(event) {
+        console.log(event.target)
+        if (targetWindowCloseModal.includes(event.target.id)) {
+          $('.switchContainer').hide();
+          modalReport.close();
+          modalSettings.close();
+          dialogLogInWarning.close();
+          modalCredits.close();
+        }
+
+      }
+
+
+
+      // newDialog("#modalReport", "#modalReport");
+    </script>
+
 
     <%= yield %>
   </body>

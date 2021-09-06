@@ -1,22 +1,27 @@
 class ReportsController < ApplicationController
   def index
     @reports = Report.all.order(:created_at)
+    @bars = { 0 => '0%', 1 => '20%', 2 => '40%', 3 => '60%', 4 => '80%', 5 => '100%'}
+    @category = { 'Acidente de Trânsito'=> 'bg-warning', 'Briga no Trânsito'=> 'bg-success', 'Briga na rua'=> 'bg-success', 'Briga Doméstica na rua'=> 'bg-success', 'Tráfico de Drogas'=> 'bg-info', 'Utilização de Drogas em via Publica'=> 'bg-info', 'Furto'=> 'bg-warning', 'Assalto com arma de fogo'=> 'bg-danger'}
     @markers = @reports.geocoded.map do |report|
+
       {
         lat: report.latitude,
         lng: report.longitude,
-        info_window: render_to_string(partial: "reports/info_window", locals: { report: report })
+        info_window: render_to_string(partial: "reports/info_window", locals: { report: report, bars: @bars, category: @category  })
       }
     end
   end
 
   def show_map
     @reports = Report.all
+    @bars = { 0 => '0%', 1 => '20%', 2 => '40%', 3 => '60%', 4 => '80%', 5 => '100%'}
+    @category = { 'Acidente de Trânsito'=> 'bg-warning', 'Briga no Trânsito'=> 'bg-success', 'Briga na rua'=> 'bg-success', 'Briga Doméstica na rua'=> 'bg-success', 'Tráfico de Drogas'=> 'bg-info', 'Utilização de Drogas em via Publica'=> 'bg-info', 'Furto'=> 'bg-warning', 'Assalto com arma de fogo'=> 'bg-danger'}
     @markers = @reports.geocoded.map do |report|
       {
         lat: report.latitude,
         lng: report.longitude,
-        info_window: render_to_string(partial: "reports/info_window", locals: { report: report })
+        info_window: render_to_string(partial: "reports/info_window", locals: { report: report, bars: @bars, category: @category  })
       }
     end
   end

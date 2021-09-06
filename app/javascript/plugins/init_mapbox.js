@@ -44,28 +44,28 @@ const initMapbox = () => {
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl }));
 
-      const markers = JSON.parse(mapElement.dataset.markers);
-      markers.forEach((marker) => {
+    const markers = JSON.parse(mapElement.dataset.markers);
+    markers.forEach((marker) => {
         if (marker) {
           new mapboxgl.Marker()
           .setLngLat([ marker.lng, marker.lat ])
           .addTo(map);
         }});
-        addMarkersToMap(map, markers);
-        fitMapToMarkers(map, markers);
+    addMarkersToMap(map, markers);
+    fitMapToMarkers(map, markers);
 
-      map.on('load', () => {
-        setInterval(async () => {
-      // make a GET request to parse the GeoJSON at the url
-      const report = mapElement.dataset.report;
-      let lastReport;
-      console.log(report);
-      if (report != '' && report != lastReport) {
-        addMarkerToMap(map, JSON.parse(report))
-        lastReport = report;
+    map.on('load', () => {
+      setInterval(async () => {
+        // make a GET request to parse the GeoJSON at the url
+        const report = mapElement.dataset.report;
+        let lastReport;
+        console.log(report);
+        if (report != '' && report != lastReport) {
+          addMarkerToMap(map, JSON.parse(report))
+          lastReport = report;
         }
-        }, 5000);
-
+      }, 5000);
+      map.resize();
     })
   };
 }

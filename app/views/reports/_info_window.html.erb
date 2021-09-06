@@ -1,10 +1,16 @@
 <% if report.photo.attached? %>
-  <%= cl_image_tag report.photo.key, class: 'card-product-img', height: 300, width: 350, crop: :fill %>
+  <%= cl_image_tag report.photo.key, class: 'card-product-img img-fluid', height: 300, width: 350, crop: :fill %>
 <% else %>
-  <%= image_tag("noimage.jpg", class: 'card-product-img', height: 300, width: 350, crop: :fill) %>
+  <%= image_tag("noimage.jpg", class: 'card-product-img img-fluid', height: 300, width: 350, crop: :fill) %>
 <% end %>
 
 <p><%= report.address %></p>
 <p><%= report.description %></p>
 <p><%= report.category %></p>
-<p><%= report.danger_level %></p>
+
+
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated <%= category[report.category] %>" role="progressbar" style="width: <%= bars[report.danger_level]%>" aria-valuenow="<%= report.danger_level %>" aria-valuemin="0" aria-valuemax="5"><%= bars[report.danger_level]%></div>
+</div>
+
+<p>Danger Level:</p>

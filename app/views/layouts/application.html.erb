@@ -2,19 +2,22 @@
 <html>
   <head>
     <title>Safety For All</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <%= favicon_link_tag %>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
        <%#trocar o application por default se a limpeza de cache nap funcionar 'rm -rf tmp/cache/assets/' %>
     <%= stylesheet_pack_tag 'application' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+
   </head>
 
   <body>
+
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 

@@ -1,44 +1,57 @@
-<div class="container container-show">
+<div class="background-show pt-5">
+  <div class="container-show">
+    <div class="img-show">
+      <% if @report.photo.attached? %>
+        <%= cl_image_tag @report.photo.key, class: 'card-product-img', height: 400, width: 450, crop: :scale %>
+      <% else %>
+        <%= image_tag(@report.category_photo, id: 'show-img') %>
+      <% end %>
+    </div>
 
-  <% if @report.photo.attached? %>
-    <%= cl_image_tag @report.photo.key, class: 'card-product-img', height: 300, width: 350, crop: :fill %>
-  <% else %>
-    <%= image_tag(@report.category_photo, class: 'card-product-img', height: 300, width: 350, crop: :fill) %>
-  <% end %>
-
-  <%= @report.address %>
-  <%= @report.description %>
-  <%= @report.category %>
-  <%= @report.danger_level %>
-  <%= @report.user.first_name.capitalize %>
-
-    <% if @report.reviews.empty? %>
-      <div id="reviews-container" data-report-id='<%= @report.id %>'>
-        <p id='no-reviews-container'>Nenhum comentário!</p>
-      </div>
-    <%else%>
-      <div id="reviews-container" data-report-id='<%= @report.id %>'>
-        <% @report.reviews.each do |review|%>
-        <%= render 'reviews/review', review: review %>
+    <div class="show-text flex-grow-1">
+      <h2>DENUNCIA CRIADA POR</h2>
+      <h2><%= "#{@report.user.first_name.upcase} #{@report.user.last_name.upcase}" %></h2>
+      <p><%= @report.address %></p>
+      <h4><strong>Descrição:</strong> <%= @report.description %></h4>
+      <br>
+      <div class="show-tags d-flex ">
+        <h5><strong>Nivel de perigo:</strong> <%= @report.danger_level %></h5>
+        <h5><strong>Categoria:</strong> <%= @report.category %></h5>
+        <% if @report.status %>
+          <h5 class="mr-5">Caso em andamento!</h5>
+        <% else %>
+          <h5 class="mr-5">Denuncia Resolvida!</h5>
         <% end %>
       </div>
-      <strong>Comentários <span id="review-count"> <%= @report.reviews.length %></span></strong>
-    <% end %>
+      <div class="seta-show">
+      <%= link_to reports_path do  %>
+         <i class="fas fa-arrow-circle-left"></i>
+      <% end %>
+      </div>
 
-    <% if @report.status && @report.user != current_user %>
-      <%= link_to "Criar uma review", new_report_review_path(@report), class: "btn px-5" %>
-    <% elsif @report.status && @report.user == current_user %>
-      <p>Caso em andamento!</p>
-    <% else %>
-      <p>Denuncia Resolvida!</p>
-    <% end %>
+      <% if policy(@report).destroy? %>
+        <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn" %>
+      <% elsif policy(@report).close? %>
+        <%= link_to "Marcar como Concluido", report_close_path(@report), method: :patch, class: "btn" %>
+      <% end %>
+    </div>
+  </div>
 
-    <%= link_to "voltar", reports_path, class: "btn px-5" %>
-
-    <% if policy(@report).destroy? %>
-      <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn" %>
-    <% elsif policy(@report).close? %>
-      <%= link_to "Marcar como Concluido", report_close_path(@report), method: :patch, class: "btn" %>
-    <% end %>
-
+      <div class="review-show mt-5">
+          <% if @report.reviews.empty? %>
+            <div id="reviews-container" data-report-id='<%= @report.id %>'>
+              <p id='no-reviews-container'>Nenhuma review!</p>
+            </div>
+          <%else%>
+            <div id="reviews-container" data-report-id='<%= @report.id %>'>
+              <% @report.reviews.each do |review|%>
+              <%= render 'reviews/review', review: review %>
+              <% end %>
+          <% if @report.status && @report.user != current_user %>
+            <%= link_to "Criar uma review", new_report_review_path(@report), class: "btn btn-primary px-5" %>
+          <% end %>
+            </div>
+            <strong>Total reviews: <span id="review-count"> <%= @report.reviews.length %></span></strong>
+          <% end %>
+      </div>
 </div>

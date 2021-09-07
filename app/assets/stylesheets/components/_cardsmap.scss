@@ -12,27 +12,23 @@
   display: flex;
   align-items: center;
   margin: 5px;
+  font-family: "Nunito", "Helvetica", "sans-serif";
+  font-weight: bold;
+
 }
 
 .card-product img {
   height: 100%;
   width: 120px;
   object-fit: cover;
-  border-radius: 15px;
-}
-
-.card-product h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
+  border-radius: 0px;
 }
 
 .card-product p {
   font-size: 12px;
-  line-height: 1.4;
-  opacity: .7;
+  line-height: 1.0;
   margin-bottom: 0;
-  margin-top: 8px;
+  padding: 3px;
 }
 
 .card-product .card-product-infos {
@@ -41,4 +37,26 @@
 
 .card-product-infos {
   font-size: 10px;
+}
+
+.botao {
+  font-size: 10px;
+  font-weight: bold;
+  background-color: rgb(6, 189, 6);
+  color: white;
+  // margin-top: 20px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%)
+}
+
+.botao2 {
+  font-size: 10px;
+  font-weight: bold;
+  background-color: blue;
+  color: white;
+  // margin-top: 20px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%)
 }

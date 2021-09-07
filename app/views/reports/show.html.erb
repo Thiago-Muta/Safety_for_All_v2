@@ -14,7 +14,7 @@
 
     <% if @report.reviews.empty? %>
       <div id="reviews-container" data-report-id='<%= @report.id %>'>
-        <p id='no-reviews-container'>Nenhuma review!</p>
+        <p id='no-reviews-container'>Nenhum comentário!</p>
       </div>
     <%else%>
       <div id="reviews-container" data-report-id='<%= @report.id %>'>
@@ -22,7 +22,7 @@
         <%= render 'reviews/review', review: review %>
         <% end %>
       </div>
-      <strong>Total reviews: <span id="review-count"> <%= @report.reviews.length %></span></strong>
+      <strong>Comentários <span id="review-count"> <%= @report.reviews.length %></span></strong>
     <% end %>
 
     <% if @report.status && @report.user != current_user %>
@@ -36,7 +36,7 @@
     <%= link_to "voltar", reports_path, class: "btn px-5" %>
 
     <% if policy(@report).destroy? %>
-      <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn" %>
+      <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn" %>
     <% elsif policy(@report).close? %>
       <%= link_to "Marcar como Concluido", report_close_path(@report), method: :patch, class: "btn" %>
     <% end %>

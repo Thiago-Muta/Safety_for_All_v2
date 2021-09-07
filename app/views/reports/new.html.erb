@@ -7,7 +7,7 @@
       <%= f.input :category, label: 'Categoria', collection: ['Acidente de Trânsito','Briga no Trânsito','Briga na rua', 'Briga Doméstica na rua', 'Tráfico de Drogas', 'Utilização de Drogas em via Publica', 'Furto', 'Assalto com arma de fogo']%>
       <%= f.input :danger_level, label: 'Nivel de Perigo', collection: ['1','2','3','4','5'] %>
       <%= f.input :address, label: 'Endereço' %>
-      <%= f.input :photo, as: :file %>
+      <%= f.input :photo, as: :file, label: 'Foto' %>
       <%= f.submit class: "btn btn-primary btn-lg" %>
     <% end %>
   </div>

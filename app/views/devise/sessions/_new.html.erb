@@ -1,7 +1,9 @@
-<div class="container text-center">
+<div class="container text-center login-home">
   <h2>Log in</h2>
 
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%#= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= simple_form_for(@user, as: resource_name, url: session_path(resource_name)) do |f| %>
+
     <div class="form-inputs">
       <%= f.input :email,
                   required: false,

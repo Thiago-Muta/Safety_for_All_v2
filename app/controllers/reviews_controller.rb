@@ -1,19 +1,21 @@
 class ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.all
+    @reviews = policy_scope(Review)
   end
 
   def new
     @report = Report.find_by(id: params[:report_id])
     redirect_to reports_path, notice: 'Report not found!' if @report.nil?
     @review = Review.new
+    authorize @review
   end
 
   def create
     @report = Report.find(params[:report_id])
     if @report.status
       @review = Review.new(review_params)
+      authorize @review
       @review.report = @report
       @review.user = current_user
       if @review.save
@@ -30,6 +32,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
+    authorize @review
     @review.destroy
     redirect_to report_path(@review.report)
   end

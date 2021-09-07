@@ -1,7 +1,7 @@
 // Specific CSS for your home-page
 body {
   background: linear-gradient(to top, #0846a3, #1f57b8, #3069ce, #3e7ce5, #4c8ffb);
-  height: 100vh;
+  
 }
 
 #home {
@@ -14,11 +14,40 @@ body {
   background-size: cover;
   background-position: center;
   width: 100vw;
-  margin: 0 auto;
+  margin: -105px auto;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  height: 60vh;
+  height: 80vh;
 }
+
+.home-logo h1 {
+  width: 500px;
+  font-size: 80px;
+  font-family: Lato, sans-serif;
+  letter-spacing: 41px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 3px 3px 3px rgb(0, 0, 0);
+}
+
+.home-logo h2 {
+  color: #4dc0e9;
+  letter-spacing:30px;
+  text-align: center;
+  font-weight: bold;
+  font-family: Lato, sans-serif;
+  text-shadow: 3px 3px 3px rgb(0, 0, 0);
+}
+
+
+.texto {
+  color: white;
+  margin-block: auto;
+}
+
+// .container {
+//   margin-top: 100px;
+// }

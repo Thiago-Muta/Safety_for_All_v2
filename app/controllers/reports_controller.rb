@@ -1,33 +1,47 @@
 class ReportsController < ApplicationController
   def index
-    @reports = Report.all.order(:created_at)
+    @reports = policy_scope(Report).order("created_at DESC")
     @bars = { 0 => '0%', 1 => '20%', 2 => '40%', 3 => '60%', 4 => '80%', 5 => '100%'}
     @category = { 'Acidente de Trânsito'=> 'bg-warning', 'Briga no Trânsito'=> 'bg-success', 'Briga na rua'=> 'bg-success', 'Briga Doméstica na rua'=> 'bg-success', 'Tráfico de Drogas'=> 'bg-info', 'Utilização de Drogas em via Publica'=> 'bg-info', 'Furto'=> 'bg-warning', 'Assalto com arma de fogo'=> 'bg-danger'}
     @markers = @reports.geocoded.map do |report|
-
       {
         lat: report.latitude,
         lng: report.longitude,
-        info_window: render_to_string(partial: "reports/info_window", locals: { report: report, bars: @bars, category: @category  })
+        info_window: render_to_string(partial: "reports/info_window", locals: { report: report, bars: @bars, category: @category })
       }
     end
   end
 
   def show_map
-    @reports = Report.all
+    @reports = policy_scope(Report)
     @bars = { 0 => '0%', 1 => '20%', 2 => '40%', 3 => '60%', 4 => '80%', 5 => '100%'}
     @category = { 'Acidente de Trânsito'=> 'bg-warning', 'Briga no Trânsito'=> 'bg-success', 'Briga na rua'=> 'bg-success', 'Briga Doméstica na rua'=> 'bg-success', 'Tráfico de Drogas'=> 'bg-info', 'Utilização de Drogas em via Publica'=> 'bg-info', 'Furto'=> 'bg-warning', 'Assalto com arma de fogo'=> 'bg-danger'}
+    @properties = @reports.geocoded.map do |report|
+      {
+        "type": "Feature",
+        "properties": { danger: report.danger_level },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            report.latitude,
+            report.longitude
+          ]
+        }
+      }
+    end
+
     @markers = @reports.geocoded.map do |report|
       {
         lat: report.latitude,
         lng: report.longitude,
-        info_window: render_to_string(partial: "reports/info_window", locals: { report: report, bars: @bars, category: @category  })
+        info_window: render_to_string(partial: "reports/info_window", locals: { report: report, bars: @bars, category: @category })
       }
     end
   end
 
   def show
     @report = Report.find_by(id: params[:id])
+    authorize @report
     if @report.nil?
       redirect_to reports_path
     else
@@ -37,10 +51,12 @@ class ReportsController < ApplicationController
 
   def new
     @report = Report.new
+    authorize @report
   end
 
   def create
     @report = Report.new(report_params)
+    authorize @report
     @report.user = current_user
     if @report.save
       ActionCable.server.broadcast('reports', { action: 'create', json: @report, partial: render_to_string(partial: 'report', locals: { report: @report })})
@@ -52,6 +68,7 @@ class ReportsController < ApplicationController
 
   def destroy
     @report = Report.find(params[:id])
+    authorize @report
     ActionCable.server.broadcast('reports', { action: 'destroy', json: @report })
     @report.destroy
     redirect_to reports_path
@@ -59,11 +76,13 @@ class ReportsController < ApplicationController
 
   def close
     @report = Report.find(params[:report_id])
+    authorize @report
     @report.update!(status: false)
     redirect_to reports_path
   end
 
   private
+  
   def report_params
     params.require(:report).permit(:description, :category, :danger_level, :address, :photo)
   end

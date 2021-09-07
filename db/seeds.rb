@@ -15,7 +15,7 @@ puts "Creating users"
 
 user = User.create!(email: 'admin@admin.com', password: '123456', first_name: 'Admin', last_name: 'SFA', cpf:'123.456.789-10', phone_number:'(11) 99876-54321', admin: true)
 user0 = User.create!(email: 'guarda@guarda.com', password: '123456', first_name: 'Guarda', last_name: 'SFA', cpf:'234.567.891-23', phone_number:'(11) 997654-3210', role: true)
-user1 = User.create!(email: 'thiagomuta@hotmail.com', password: '123123', first_name: 'Thiago', last_name: 'Muta', cpf:'272.092.250-13', phone_number:'+5511942482030', role: true)
+user1 = User.create!(email: 'thiagomuta@hotmail.com', password: '123123', first_name: 'Thiago', last_name: 'Muta', cpf:'272.092.250-13', phone_number:'+5511942482030', send_to_phone:'+5511942482030', role: true)
 user2 = User.create!(email: 'anapaulacury@hotmail.com', password: '123123', first_name: 'Ana', last_name: 'Paula', cpf:'015.704.470-04', phone_number:'(86)62920-7547', role: true)
 user3 = User.create!(email: 'tassohenrique@hotmail.com', password: '123123', first_name: 'Tasso', last_name: 'Rodrigues', cpf:'259.981.560-64', phone_number:'+55(67)9662-9006', role: true)
 user4 = User.create!(email: 'allyssoncomin@hotmail.com', password: '123123', first_name: 'Allysson', last_name: 'Comin', cpf:'174.041.680-58', phone_number:'+55(67)9913-6550', role: true)

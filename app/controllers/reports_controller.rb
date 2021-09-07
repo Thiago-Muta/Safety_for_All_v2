@@ -89,9 +89,9 @@ class ReportsController < ApplicationController
       from = ENV['TWILIO_SMS_NUMBER']
       body = "Estou em perigo aqui #{report_url(@report)}"
       TwilioService.new.send_message(body, to, from)
-      render json: {message: 'Alert Sent!'}
+      render json: { message: 'Alert Sent!' }
     else
-      render json: {message: 'Error!'}
+      render json: { message: 'Error!' }
     end
   end
 

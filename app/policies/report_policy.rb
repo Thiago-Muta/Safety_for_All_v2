@@ -5,10 +5,6 @@ class ReportPolicy < ApplicationPolicy
     end
   end
 
-  def new?
-    true
-  end
-
   def create?
     true
   end
@@ -21,6 +17,10 @@ class ReportPolicy < ApplicationPolicy
     # quem pode entrar na pagina de edit ?
     # user =>   quem esta tentando acessar a pagina   (current_user)
     # record => restaurante da pagina                 (@report)
+    true
+  end
+
+  def send_message?
     true
   end
 

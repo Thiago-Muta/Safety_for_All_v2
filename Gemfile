@@ -26,6 +26,8 @@ gem 'redis', '~> 4.0'
 # gem 'image_processing', '~> 1.2'
 gem 'cloudinary', '~> 1.16.0'
 gem 'geocoder'
+gem 'twilio-ruby', '~> 5.58.1'
+
 
 
 # Reduces boot times through caching; required in config/boot.rb

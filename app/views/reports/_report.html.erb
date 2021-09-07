@@ -3,14 +3,14 @@
   <% if report.photo.attached? %>
     <%= cl_image_tag report.photo.key, class: 'card-product-img', height: 100, width: 350, crop: :fill %>
   <% else %>
-    <%= image_tag("noimage.jpg", class: 'card-product-img', height: 100, width: 150, crop: :fill) %>
+    <%= image_tag(report.category_photo, class: 'card-product-img', height: 100, width: 150, crop: :fill) %>
   <% end %>
 
-  <div class="card-product-infos">
-    <%= report.user.first_name.capitalize %>
-    <%= report.description %>
-    <%= link_to "Ver detalhes", report_path(report), class: "btn px-5" %>
-    <%= link_to "Criar uma review", new_report_review_path(report), class: "btn px-5" %>
+  <div class="card-product-infos text-justify right row">
+    <div><p>Quem reportou?    <%= report.user.first_name.capitalize %></p></div>
+    <div><p>Descrição:        <%= report.description %></p></div>
+    <div class="col-6"><%= link_to "Ver detalhes", report_path(report), class: "btn botao" %></div>
+    <div class="col-6"><%= link_to "Criar comentário", new_report_review_path(report), class: "btn botao2" %></div>
   </div>
 
 </div>

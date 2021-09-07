@@ -5,9 +5,11 @@
 
 .mapboxgl-popup-content {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Nunito", "Helvetica", "sans-serif";
+  font-weight: bold;
   border-radius: 30px !important;
-
+  padding-top: 10px;
+  background-color: rgb(209, 209, 209) !important;
 }
 
 
@@ -18,4 +20,11 @@
 .mapboxgl-popup-close-button {
   right: 15px !important;
     top: 15px !important;
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card-product-img {
+  border-radius: 15px;
 }

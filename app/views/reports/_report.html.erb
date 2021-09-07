@@ -1,16 +1,41 @@
-<div class="card-product" id="report-<%=report.id %>">
+<div class="card-product" id="report-<%=report.id %>" data-center='<%= [report.longitude, report.latitude] %>'>
 
   <% if report.photo.attached? %>
-    <%= cl_image_tag report.photo.key, class: 'card-product-img', height: 100, width: 350, crop: :fill %>
+    <%= cl_image_tag report.photo.key, class: 'card-product-img', height: 100, width: 150, crop: :fill %>
   <% else %>
     <%= image_tag(report.category_photo, class: 'card-product-img', height: 100, width: 150, crop: :fill) %>
   <% end %>
 
+
   <div class="card-product-infos text-justify right row">
-    <div><p>Quem reportou?    <%= report.user.first_name.capitalize %></p></div>
-    <div><p>Descrição:        <%= report.description %></p></div>
+    <div>
+      <div><p>Quem reportou?    <%= report.user.first_name.capitalize %></p></div>
+      <div><p>Descrição:        <%= report.description %></p></div>
+
+      <% if report.reviews.empty? %>
+        <div id="reviews-container" data-report-id='<%= report.id %>'>
+          <p id='no-reviews-container'>NO reviews yet!</p>
+        </div>
+      <%else%>
+         <strong>Total reviews: <span id="review-count"> <%= report.reviews.length %></span></strong>
+      <% end %>
+
+    </div>
+
     <div class="col-6"><%= link_to "Ver detalhes", report_path(report), class: "btn botao" %></div>
-    <div class="col-6"><%= link_to "Criar comentário", new_report_review_path(report), class: "btn botao2" %></div>
+
+    <div class="col-6">
+
+        <% if report.status && report.user != current_user %>
+          <div><%= link_to "Criar comentário", new_report_review_path(report), class: "btn botao2" %></div>
+        <% elsif report.status && report.user == current_user %>
+          <p class="info-report">Caso em andamento!</p>
+        <% else %>
+          <p class="info-report2">Denuncia Resolvida!</p>
+        <% end %>
+
+    </div>
+
   </div>
 
 </div>

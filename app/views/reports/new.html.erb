@@ -1,12 +1,14 @@
-<h1 class='container text-center'>Reporte sua denuncia</h1>
+<div class="container container-form ">
+  <h1 class='text-center mt-5'>Reporte sua denuncia</h1>
 
-<div class='container text-center'>
-  <%= simple_form_for @report do |f| %>
-    <%= f.input :description, label: 'Descrição' %>
-    <%= f.input :category, label: 'Categoria', collection: ['Acidente de Trânsito','Briga no Trânsito','Briga na rua', 'Briga Doméstica na rua', 'Tráfico de Drogas', 'Utilização de Drogas em via Publica', 'Furto', 'Assalto com arma de fogo']%>
-    <%= f.input :danger_level, label: 'Nivel de Perigo', collection: ['1','2','3','4','5'] %>
-    <%= f.input :address, label: 'Endereço' %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit class: "btn btn-primary btn-lg" %>
-  <% end %>
+  <div class='text-center mt-3'>
+    <%= simple_form_for @report do |f| %>
+      <%= f.input :description, label: 'Descrição' %>
+      <%= f.input :category, label: 'Categoria', collection: ['Acidente de Trânsito','Briga no Trânsito','Briga na rua', 'Briga Doméstica na rua', 'Tráfico de Drogas', 'Utilização de Drogas em via Publica', 'Furto', 'Assalto com arma de fogo']%>
+      <%= f.input :danger_level, label: 'Nivel de Perigo', collection: ['1','2','3','4','5'] %>
+      <%= f.input :address, label: 'Endereço' %>
+      <%= f.input :photo, as: :file %>
+      <%= f.submit class: "btn btn-primary btn-lg" %>
+    <% end %>
+  </div>
 </div>

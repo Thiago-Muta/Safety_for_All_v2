@@ -7,14 +7,16 @@
 .card-product {
   overflow: hidden;
   height: 120px;
-  background: white;
+  background-color: rgb(231, 231, 231) !important;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
   margin: 5px;
   font-family: "Nunito", "Helvetica", "sans-serif";
   font-weight: bold;
-
+  padding: 5px;
+  border: 1px solid;
+  border-radius: 5px;
 }
 
 .card-product img {
@@ -42,12 +44,13 @@
 .botao {
   font-size: 10px;
   font-weight: bold;
-  background-color: rgb(6, 189, 6);
+  background-color: rgb(186, 189, 6);
   color: white;
   // margin-top: 20px;
   position: relative;
   top: 50%;
-  transform: translateY(-50%)
+  transform: translateY(-50%);
+  border-radius: 11px;
 }
 
 .botao2 {
@@ -56,7 +59,37 @@
   background-color: blue;
   color: white;
   // margin-top: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 11px;
+}
+
+.info-report {
+  font-size: 10px;
+  font-weight: bold;
+  background-color: rgb(250, 47, 47);
+  color: white;
+  // margin-top: 20px;
   position: relative;
   top: 50%;
-  transform: translateY(-50%)
+  transform: translateY(-50%);
+  border-radius: 11px;
+  padding: 50px;
+  padding: 6px 12px !important;
+}
+
+
+.info-report2 {
+  font-size: 10px;
+  font-weight: bold;
+  background-color: rgb(6, 189, 6);
+  color: white;
+  // margin-top: 20px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 11px;
+  padding: 50px;
+
 }

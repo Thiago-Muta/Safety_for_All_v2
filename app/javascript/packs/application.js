@@ -29,6 +29,7 @@ import { initReportsCable } from '../channels/reports_channel';
 import { initReviewsCable } from '../channels/reviews_channel';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder';
 import { initAutocomplete } from '../plugins/init_autocomplete';
+import { initSos } from './sos';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -40,4 +41,5 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete();
   initReportsCable();
   initReviewsCable();
+  initSos();
 });

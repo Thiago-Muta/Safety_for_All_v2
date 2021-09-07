@@ -1,5 +1,13 @@
 .container-form {
-  height: calc(100vh - 153px);
+  height: 80vh;
+  margin: 0 400px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 25px;
+    h1 {
+      font-family: Lato, sans-serif;
+      letter-spacing: 11px;
+      font-size: border;
+    }
 }
 
 .container-show {
@@ -8,4 +16,51 @@
 
 .container-review {
   height: calc(100vh - 105px);
+}
+
+.background-form {
+  width: 100%;
+  background-image: linear-gradient(to top, rgba(8, 70, 163, 0.3), rgba(31, 87, 184, 0.3), rgba(48, 105, 206, 0.3), rgba(62, 124, 229, 0.3), rgba(76, 143, 251, 0.3)), image-url('city.png');
+  height: calc(100vh - 105px);
+  background-size: cover;
+  background-position: center;
+}
+
+.btn-primary {
+  // margin: 25px 45px;
+  padding: 10px 40px;
+  background-color: #4a8cf8;
+  color: black;
+  border: 0;
+    &:hover {
+      background-color: #354566;
+      color: white;
+    }
+}
+
+.btn-success {
+  background-color: #354566;
+  color: white;
+  border: 0;
+    &:hover {
+      background-color: #4a8cf8;
+      color: black;
+    }
+    input {
+      font-family: Lato, sans-serif;
+      letter-spacing: 5px;
+    }
+  }
+
+label {
+  font-family: Lato, sans-serif;
+  font-size: 18px;
+  letter-spacing: 5px;
+}
+
+.text-btn {
+  input {
+    font-family: Lato, sans-serif;
+    letter-spacing: 5px;
+  }
 }

@@ -14,10 +14,10 @@
 
       <% if report.reviews.empty? %>
         <div id="reviews-container" data-report-id='<%= report.id %>'>
-          <p id='no-reviews-container'>NO reviews yet!</p>
+          <p id='no-reviews-container'>Nenhum comentário ainda!</p>
         </div>
       <%else%>
-         <strong>Total reviews: <span id="review-count"> <%= report.reviews.length %></span></strong>
+         <strong>Comentários: <span id="review-count"> <%= report.reviews.length %></span></strong>
       <% end %>
 
     </div>

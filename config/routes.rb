@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
     patch 'close', to: 'reports#close'
   end
+  post 'send_message', to: 'reports#send_message'
   resources :reviews, only: [:show, :destroy]
 
 end

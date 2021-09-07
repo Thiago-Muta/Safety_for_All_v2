@@ -81,8 +81,22 @@ class ReportsController < ApplicationController
     redirect_to reports_path
   end
 
+  def send_message
+    @report = Report.new(user: current_user, description: 'Estou em perigo!', category: 'Perigo imediato!', danger_level: 5, latitude: params[:latitude], longitude: params[:longitude])
+    authorize @report
+    if @report.save
+      to = current_user.send_to_phone
+      from = ENV['TWILIO_SMS_NUMBER']
+      body = "Estou em perigo aqui #{report_url(@report)}"
+      TwilioService.new.send_message(body, to, from)
+      render json: {message: 'Alert Sent!'}
+    else
+      render json: {message: 'Error!'}
+    end
+  end
+
   private
-  
+
   def report_params
     params.require(:report).permit(:description, :category, :danger_level, :address, :photo)
   end

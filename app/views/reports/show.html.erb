@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container container-show">
 
   <% if @report.photo.attached? %>
     <%= cl_image_tag @report.photo.key, class: 'card-product-img', height: 300, width: 350, crop: :fill %>
@@ -14,7 +14,7 @@
 
     <% if @report.reviews.empty? %>
       <div id="reviews-container" data-report-id='<%= @report.id %>'>
-        <p id='no-reviews-container'>NO reviews yet!</p>
+        <p id='no-reviews-container'>Nenhuma review!</p>
       </div>
     <%else%>
       <div id="reviews-container" data-report-id='<%= @report.id %>'>
@@ -30,11 +30,15 @@
     <% elsif @report.status && @report.user == current_user %>
       <p>Caso em andamento!</p>
     <% else %>
-      <p>Report Solved!</p>
+      <p>Denuncia Resolvida!</p>
     <% end %>
 
     <%= link_to "voltar", reports_path, class: "btn px-5" %>
-    <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn" %>
-    <%= link_to "Marcar como Concluido", report_close_path(@report), method: :patch, class: "btn" %>
+
+    <% if policy(@report).destroy? %>
+      <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn" %>
+    <% elsif policy(@report).close? %>
+      <%= link_to "Marcar como Concluido", report_close_path(@report), method: :patch, class: "btn" %>
+    <% end %>
 
 </div>

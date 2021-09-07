@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
       @review.report = @report
       @review.user = current_user
       if @review.save
-        ReviewsChannel.broadcast_to(@report, {review_count: @report.reviews.length, partial: render_to_string(partial: 'review', locals: {review: @review})})
+        ReviewsChannel.broadcast_to(@report, {report_id: @report.id, review_count: @report.reviews.length, partial: render_to_string(partial: 'review', locals: {review: @review})})
         #  ActionCable.server.broadcast(@report, render_to_string(partial: 'review', locals: { review: @review }))
         redirect_to report_path(@report), notice: 'review was successfully created.'
       else

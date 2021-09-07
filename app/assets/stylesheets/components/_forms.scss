@@ -1,10 +1,18 @@
+
 .container-form {
-  height: calc(100vh - 153px);
+  height: 80vh;
+  margin: 0 400px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 25px;
+    h1 {
+      font-family: Lato, sans-serif;
+      letter-spacing: 11px;
+      font-size: border;
+    }
 }
 
-.container-show {
-  height: calc(100vh - 105px);
-}
+
+
 
 .container-review {
   height: calc(100vh - 105px);

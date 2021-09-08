@@ -1,0 +1,70 @@
+.background-show {
+  width: 100%;
+  background-image: linear-gradient(to top, rgba(8, 70, 163, 0.3), rgba(31, 87, 184, 0.3), rgba(48, 105, 206, 0.3), rgba(62, 124, 229, 0.3), rgba(76, 143, 251, 0.3)), image-url('wtpg.jpg');
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.container-show {
+  text-align: center;
+  background-color: rgba(228, 225, 225, 0.7);
+  border-radius: 15px;
+  justify-content: space-between;
+  display: flex;
+  height: 45vh;
+  align-items: center;
+  margin: 0 200px;
+}
+
+.img-show {
+  margin: 0 40px;
+}
+
+#show-img {
+  height: 400px;
+  width: 480px;
+}
+
+.review-show {
+  background-color: rgba(228, 225, 225, 0.7);
+  border-radius: 15px;
+  padding: 10px;
+  margin: 0 200px;
+}
+
+.show-text {
+  margin: 0;
+  font-family: Lato, sans-serif ;
+    h2 {
+      font-weight: bold;
+      letter-spacing: 8px;
+    }
+
+    p {
+      font-size: 15px;
+    }
+}
+
+.show-tags {
+  h5 {
+    color: white;
+    padding: 15px 25px;
+    background-color: #354566;
+    flex-grow: 1;
+    margin: 0 10px;
+  }
+}
+
+.seta-show {
+  color: #4A8CF8;
+  font-size: 45px;
+  text-decoration: none;
+  width: 100%;
+  margin-top: 30px;
+  text-align: left;
+    &:hover {
+      color: #354566
+    }
+}

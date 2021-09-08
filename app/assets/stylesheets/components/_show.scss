@@ -1,9 +1,10 @@
 .background-show {
   width: 100%;
   background-image: linear-gradient(to top, rgba(8, 70, 163, 0.3), rgba(31, 87, 184, 0.3), rgba(48, 105, 206, 0.3), rgba(62, 124, 229, 0.3), rgba(76, 143, 251, 0.3)), image-url('wtpg.jpg');
-  height: 100vh;
+  height: 100%;
   background-size: cover;
   background-position: center;
+  padding: 80px 0 100px 0;
 }
 
 
@@ -25,12 +26,13 @@
 #show-img {
   height: 400px;
   width: 480px;
+  object-fit: cover;
 }
 
 .review-show {
   background-color: rgba(228, 225, 225, 0.7);
   border-radius: 15px;
-  padding: 10px;
+  padding: 50px 42px;
   margin: 0 200px;
 }
 
@@ -67,4 +69,18 @@
     &:hover {
       color: #354566
     }
+}
+
+.review-title {
+  letter-spacing: 4px;
+  font-family: Lato, sans-serif;
+  h2 {
+    font-weight: bold;
+  }
+}
+
+.name-title {
+  font-family: Lato, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
 }

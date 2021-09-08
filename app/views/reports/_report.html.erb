@@ -7,35 +7,33 @@
   <% end %>
 
 
-  <div class="card-product-infos text-justify right row">
+  <div class="card-product-infos flex-grow-1">
     <div>
-      <div><p>Quem reportou?    <%= report.user.first_name.capitalize %></p></div>
-      <div><p>Descrição:        <%= report.description %></p></div>
+      <%# <div><p>Quem reportou?    <%= report.user.first_name.capitalize %>
+      <div><p><%= report.description %></p></div>
 
-      <% if report.reviews.empty? %>
-        <div id="reviews-container" data-report-id='<%= report.id %>'>
-          <p id='no-reviews-container'>NO reviews yet!</p>
-        </div>
-      <%else%>
-         <strong>Total reviews: <span id="review-count"> <%= report.reviews.length %></span></strong>
-      <% end %>
-
+      <div class="">
+        <div class=""><%= link_to "Ver detalhes", report_path(report), class: "btn botao" %></div>
+      </div>
     </div>
 
-    <div class="col-6"><%= link_to "Ver detalhes", report_path(report), class: "btn botao" %></div>
-
-    <div class="col-6">
-
-        <% if report.status && report.user != current_user %>
-          <div><%= link_to "Criar comentário", new_report_review_path(report), class: "btn botao2" %></div>
-        <% elsif report.status && report.user == current_user %>
-          <p class="info-report">Caso em andamento!</p>
-        <% else %>
-          <p class="info-report2">Denuncia Resolvida!</p>
-        <% end %>
-
-    </div>
-
+    <% if report.reviews.empty? %>
+      <div id="reviews-container" data-report-id='<%= report.id %>'>
+        <p id='no-reviews-container'>Sem comentários</p>
+      </div>
+    <% else %>
+      <p class="review-count">Total reviews: <span id="review-count"> <%= report.reviews.length %></span></p>
+    <% end %>
   </div>
-
 </div>
+<%# ============================================================= %>
+
+      <%# <div class="info-report">
+        <% if report.status && report.user != current_user %>
+          <%# <%= link_to "Criar comentário", new_report_review_path(report), class: "btn botao" %>
+        <%# <% elsif report.status && report.user == current_user %>
+          <%# <p>Caso em andamento</p> %>
+        <%# <% else %>
+          <%# <p>Denuncia Resolvida!</p> %>
+        <%# <% end %>
+      <%# </div> %>

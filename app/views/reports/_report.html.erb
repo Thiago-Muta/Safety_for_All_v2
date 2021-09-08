@@ -9,7 +9,7 @@
 
   <div class="card-product-infos flex-grow-1">
     <div>
-      <%# <div><p>Quem reportou?    <%= report.user.first_name.capitalize %>
+      <%# <div><p>Quem reportou? <%= report.user.first_name.capitalize %>
       <div><p><%= report.description %></p></div>
 
       <div class="">
@@ -22,7 +22,7 @@
         <p id='no-reviews-container'>Sem comentários</p>
       </div>
     <% else %>
-      <p class="review-count">Total reviews: <span id="review-count"> <%= report.reviews.length %></span></p>
+      <p class="review-count">Total de comentarios: <span id="review-count"> <%= report.reviews.length %></span></p>
     <% end %>
   </div>
 </div>

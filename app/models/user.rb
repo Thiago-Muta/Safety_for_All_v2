@@ -5,6 +5,6 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :email, :password, :first_name, :last_name, :cpf, :phone_number, presence: true
+  validates :email, :password, :first_name, :last_name, :cpf, :phone_number, :send_to_phone, presence: true
   has_one_attached :photo
 end

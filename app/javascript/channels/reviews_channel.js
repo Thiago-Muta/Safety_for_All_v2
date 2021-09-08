@@ -20,7 +20,7 @@ const initReviewsCable = () => {
 
 
         if (data.review_count == 1) {
-          const reviewsCounter = `<strong>Total reviews: <span id="review-count"> ${data.review_count}</span></strong>`
+          const reviewsCounter = `<strong>Total comentários: <span id="review-count"> ${data.review_count}</span></strong>`
           reviewsContainer.insertAdjacentHTML('afterend', reviewsCounter);
         } else {
           const reviewCount = document.getElementById('review-count');

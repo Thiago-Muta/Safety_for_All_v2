@@ -1,3 +1,11 @@
+//formulario reports
+.background-form {
+  width: 100%;
+  background-image: linear-gradient(to top, rgba(8, 70, 163, 0.3), rgba(31, 87, 184, 0.3), rgba(48, 105, 206, 0.3), rgba(62, 124, 229, 0.3), rgba(76, 143, 251, 0.3)), image-url('city.png');
+  height: calc(100vh - 105px);
+  background-size: cover;
+  background-position: center;
+}
 
 .container-form {
   height: 80vh;
@@ -11,20 +19,33 @@
     }
 }
 
-
-
-
-.container-review {
-  height: calc(100vh - 105px);
-}
-
-.background-form {
+//formulario review
+.background-form-review {
   width: 100%;
-  background-image: linear-gradient(to top, rgba(8, 70, 163, 0.3), rgba(31, 87, 184, 0.3), rgba(48, 105, 206, 0.3), rgba(62, 124, 229, 0.3), rgba(76, 143, 251, 0.3)), image-url('city.png');
+  background-image: linear-gradient(to top, rgba(8, 70, 163, 0.3), rgba(31, 87, 184, 0.3), rgba(48, 105, 206, 0.3), rgba(62, 124, 229, 0.3), rgba(76, 143, 251, 0.3)), image-url('street-6120192.jpg');
   height: calc(100vh - 105px);
   background-size: cover;
   background-position: center;
+  padding-top: 100px;
 }
+
+.container-review {
+  // height: calc(100vh - 105px);
+  height: 50vh;
+  margin: 0 400px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 25px;
+    h1 {
+      font-family: Lato, sans-serif;
+      letter-spacing: 11px;
+      font-size: border;
+    }
+}
+
+#input-review textarea{
+  height: 1000px;
+}
+
 
 .btn-primary {
   // margin: 25px 45px;

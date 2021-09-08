@@ -58,8 +58,7 @@
           <%else%>
             <div id="reviews-container" data-report-id='<%= @report.id %>'>
               <% @report.reviews.each do |review|%>
-              <p class="name-title"><%= "#{review.user.first_name.capitalize} #{review.user.last_name.capitalize}" %>:</p>
-              <p><%= review.content %></p>
+              <%= render 'reviews/review', review: review %>
               <hr>
               <% end %>
             </div>

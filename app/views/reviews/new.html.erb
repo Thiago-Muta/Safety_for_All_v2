@@ -1,10 +1,17 @@
-<div class="container container-review">
-  <h1>Crie seu comentário</h1>
+<div class="background-form-review py-5">
+  <div class="container-review">
+    <h1 class="text-center py-3 pt-5">Crie seu comentário</h1>
 
-    <div class='container text-center'>
-      <%= simple_form_for [@report, @review] do |f| %>
-        <%= f.input :content %>
-        <%= f.submit class: "btn btn-primary btn-lg" %>
-      <% end %>
-    </div>
+      <div class='container text-center mt-5'>
+        <%= simple_form_for [@report, @review] do |f| %>
+          <%= f.input :content, label: 'Comentário', input_html: { style: 'height: 100px' } %>
+          <%= f.submit class: "btn btn-primary btn-lg" %>
+        <% end %>
+      </div>
+      <div class="seta-show ml-3">
+        <%= link_to report_path(@report) do  %>
+        <i class="fas fa-arrow-circle-left"></i>
+        <% end %>
+      </div>
+  </div>
 </div>

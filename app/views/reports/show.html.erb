@@ -1,4 +1,4 @@
-<div class="background-show pt-5">
+<div class="background-show">
   <div class="container-show">
     <div class="img-show">
       <% if @report.photo.attached? %>
@@ -20,7 +20,7 @@
         <% if @report.status %>
           <h5 class="mr-5">Caso em andamento!</h5>
         <% else %>
-          <h5 class="mr-5">Denuncia Resolvida!</h5>
+          <h5 class="mr-5">Denúncia Resolvida!</h5>
         <% end %>
       </div>
       <div class="seta-show">
@@ -37,20 +37,32 @@
   </div>
 
       <div class="review-show mt-5">
+        <div class="review-title text-center">
+          <% if @report.reviews.empty? %>
+            <h2>ESSA DENÚNCIA AINDA NÃO POSSUI COMENTÁRIOS</h2>
+          <% elsif @report.reviews.length == 1 %>
+              <h2>ESSA DENÚNCIA POSSUI <span id="review-count"> <%= @report.reviews.length %></span> COMENTÁRIO</h2>
+          <% else %>
+              <h2>ESSA DENÚNCIA POSSUI <span id="review-count"> <%= @report.reviews.length %></span> COMENTÁRIOS</h2>
+          <% end %>
+        </div>
+        <div class="text-center">
+          <% if @report.status && @report.user != current_user %>
+            <%= link_to "Criar um comentário", new_report_review_path(@report), class: "btn btn-primary px-5 mt-3" %>
+          <% end %>
+        </div>
           <% if @report.reviews.empty? %>
             <div id="reviews-container" data-report-id='<%= @report.id %>'>
-              <p id='no-reviews-container'>Nenhuma review!</p>
+              <p id='no-reviews-container'>Nenhum comentário</p>
             </div>
           <%else%>
             <div id="reviews-container" data-report-id='<%= @report.id %>'>
               <% @report.reviews.each do |review|%>
-              <%= render 'reviews/review', review: review %>
+              <p class="name-title"><%= "#{review.user.first_name.capitalize} #{review.user.last_name.capitalize}" %>:</p>
+              <p><%= review.content %></p>
+              <hr>
               <% end %>
-          <% if @report.status && @report.user != current_user %>
-            <%= link_to "Criar uma review", new_report_review_path(@report), class: "btn btn-primary px-5" %>
-          <% end %>
             </div>
-            <strong>Total reviews: <span id="review-count"> <%= @report.reviews.length %></span></strong>
           <% end %>
       </div>
 </div>

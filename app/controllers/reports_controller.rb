@@ -16,6 +16,7 @@ class ReportsController < ApplicationController
     @reports = policy_scope(Report)
     @bars = { 0 => '0%', 1 => '20%', 2 => '40%', 3 => '60%', 4 => '80%', 5 => '100%'}
     @category = { 'Acidente de Trânsito'=> 'bg-warning', 'Briga no Trânsito'=> 'bg-success', 'Briga na rua'=> 'bg-success', 'Briga Doméstica na rua'=> 'bg-success', 'Tráfico de Drogas'=> 'bg-info', 'Utilização de Drogas em via Publica'=> 'bg-info', 'Furto'=> 'bg-warning', 'Assalto com arma de fogo'=> 'bg-danger'}
+
     @properties = @reports.geocoded.map do |report|
       {
         "type": "Feature",
@@ -89,7 +90,7 @@ class ReportsController < ApplicationController
       from = ENV['TWILIO_SMS_NUMBER']
       body = "Estou em perigo aqui #{report_url(@report)}"
       TwilioService.new.send_message(body, to, from)
-      render json: { message: 'Alert Sent!' }
+      render json: { message: 'Alerta Enviado!' }
     else
       render json: { message: 'Error!' }
     end

@@ -12,7 +12,7 @@ const initReportsCable = () => {
         }
         else if ( data.action == 'create') {
           // called when data is broadcast in the cable
-          reportsContainer.insertAdjacentHTML('beforeend', data.partial);
+          reportsContainer.insertAdjacentHTML('afterbegin', data.partial);
           const mapElement = document.getElementById('map');
           mapElement.dataset.report = JSON.stringify(
           {

@@ -29,9 +29,8 @@
       <% end %>
       </div>
 
-      <% if policy(@report).destroy? %>
-        <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn" %>
-      <% elsif policy(@report).close? %>
+      <% if policy(@report).destroy? || policy(@report).close? %>
+        <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn" %>
         <%= link_to "Marcar como Concluido", report_close_path(@report), method: :patch, class: "btn" %>
       <% end %>
     </div>
@@ -59,8 +58,7 @@
           <%else%>
             <div id="reviews-container" data-report-id='<%= @report.id %>'>
               <% @report.reviews.each do |review|%>
-              <p class="name-title"><%= "#{review.user.first_name.capitalize} #{review.user.last_name.capitalize}" %>:</p>
-              <p><%= review.content %></p>
+              <%= render 'reviews/review', review: review %>
               <hr>
               <% end %>
             </div>

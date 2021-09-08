@@ -30,7 +30,7 @@
       </div>
 
       <% if policy(@report).destroy? %>
-        <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn" %>
+        <%= link_to "Delete", report_path, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn" %>
       <% elsif policy(@report).close? %>
         <%= link_to "Marcar como Concluido", report_close_path(@report), method: :patch, class: "btn" %>
       <% end %>

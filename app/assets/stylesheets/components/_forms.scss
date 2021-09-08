@@ -11,9 +11,6 @@
     }
 }
 
-
-
-
 .container-review {
   height: calc(100vh - 105px);
 }
@@ -63,4 +60,9 @@ label {
     font-family: Lato, sans-serif;
     letter-spacing: 5px;
   }
+}
+
+
+.form-gap {
+  gap: 10px;
 }

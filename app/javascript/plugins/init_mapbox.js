@@ -46,9 +46,24 @@ const initMapbox = () => {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/thiago690/ckta82lr9224k17mm42jbzaty'
+      style: 'mapbox://styles/thiago690/ckt0ik1gy01kg17pdzfw2e6a1',
+      center: [-46.631259, -23.547571], // sp-saopaulo
+      zoom: 10
     });
-// mapbox://styles/thiago690/ckt0ik1gy01kg17pdzfw2e6a1
+    // mapbox://styles/thiago690/ckta82lr9224k17mm42jbzaty
+
+    //dark mode do mapa aqui
+    // const layerList = document.getElementById('menu');
+    // const inputs = layerList.getElementsByTagName('input');
+
+    // for (const input of inputs) {
+    //   input.onclick = (layer) => {
+    //     const layerId = layer.target.id;
+    //     map.setStyle('mapbox://styles/mapbox/' + layerId);
+    //   };
+    // }
+    //=-=====================
+
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl }));
     if (mapElement.dataset.markers != 'null') {

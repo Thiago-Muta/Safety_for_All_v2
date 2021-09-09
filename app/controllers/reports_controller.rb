@@ -33,7 +33,7 @@ class ReportsController < ApplicationController
       }
     end
 
-    @markers = [{ lat: '-23.5513982', lng: '-46.6894532' }]
+    # @markers = [{ lat: '-23.5513982', lng: '-46.6894532' }]
 
   end
 

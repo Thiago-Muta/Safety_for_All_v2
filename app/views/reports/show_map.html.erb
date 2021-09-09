@@ -1,6 +1,13 @@
+<%# <div id="menu">
+  <input id="light-v10" type="radio" name="rtoggle" value="light">
+  <label for="light-v10">light</label>
+  <input id="dark-v10" type="radio" name="rtoggle" value="dark">
+  <label for="dark-v10">dark</label>
+</div> %>
+
 <div id="map"
-  <%# style="width: 100%; height: 786px;" %>
   data-markers="<%= @markers.to_json %>"
   data-properties="<%= @properties.to_json %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  <%# style="width: 100%; height: 786px;" %>
 </div>

@@ -39,7 +39,7 @@
       <div class="review-show mt-5">
         <div class="review-title text-center">
           <% if @report.reviews.empty? %>
-            <h2>ESSA DENÚNCIA AINDA NÃO POSSUI COMENTÁRIOS</h2>
+            <h2 id='no-reviews' >ESSA DENÚNCIA AINDA NÃO POSSUI COMENTÁRIOS</h2>
           <% elsif @report.reviews.length == 1 %>
               <h2>ESSA DENÚNCIA POSSUI <span id="review-count"> <%= @report.reviews.length %></span> COMENTÁRIO</h2>
           <% else %>
@@ -64,4 +64,12 @@
             </div>
           <% end %>
       </div>
+
+      <div id="map"
+        <%# style=" height: 786px;" %>
+        data-markers="<%= @markers.to_json %>"
+        data-report=''
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+
 </div>

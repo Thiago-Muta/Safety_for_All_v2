@@ -24,6 +24,8 @@ class Report < ApplicationRecord
       'drogaspublicas.jpg'
     when 'Furto'
       'furto.jpg'
+    when 'Panico'
+      'panico.jpg'
     else 'Assalto com arma de fogo'
       'assalto.jpg'
     end

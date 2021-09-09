@@ -2,20 +2,22 @@ class ReportsController < ApplicationController
   def index
     @reports = policy_scope(Report).order("created_at DESC")
     @bars = { 0 => '0%', 1 => '20%', 2 => '40%', 3 => '60%', 4 => '80%', 5 => '100%'}
-    @category = { 'Acidente de Trânsito'=> 'bg-warning', 'Briga no Trânsito'=> 'bg-success', 'Briga na rua'=> 'bg-success', 'Briga Doméstica na rua'=> 'bg-success', 'Tráfico de Drogas'=> 'bg-info', 'Utilização de Drogas em via Publica'=> 'bg-info', 'Furto'=> 'bg-warning', 'Assalto com arma de fogo'=> 'bg-danger'}
+    @category = { 'Acidente de Trânsito'=> 'bg-warning', 'Briga no Trânsito'=> 'bg-success', 'Briga na rua'=> 'bg-success', 'Briga Doméstica na rua'=> 'bg-success', 'Tráfico de Drogas'=> 'bg-info', 'Utilização de Drogas em via Pública'=> 'bg-primary', 'Furto'=> 'bg-warning', 'Assalto com arma de fogo'=> 'bg-danger'}
     @markers = @reports.geocoded.map do |report|
+      marker_url = set_marker_color(report)
       {
         lat: report.latitude,
         lng: report.longitude,
-        info_window: render_to_string(partial: "reports/info_window", locals: { report: report, bars: @bars, category: @category })
+        info_window: render_to_string(partial: "reports/info_window", locals: { report: report, bars: @bars, category: @category }),
+        image_url: helpers.asset_url(marker_url)
       }
     end
   end
 
   def show_map
     @reports = policy_scope(Report)
-    @bars = { 0 => '0%', 1 => '20%', 2 => '40%', 3 => '60%', 4 => '80%', 5 => '100%'}
-    @category = { 'Acidente de Trânsito'=> 'bg-warning', 'Briga no Trânsito'=> 'bg-success', 'Briga na rua'=> 'bg-success', 'Briga Doméstica na rua'=> 'bg-success', 'Tráfico de Drogas'=> 'bg-info', 'Utilização de Drogas em via Publica'=> 'bg-info', 'Furto'=> 'bg-warning', 'Assalto com arma de fogo'=> 'bg-danger'}
+    @bars = { 0 => '0%', 1 => '20%', 2 => '40%', 3 => '60%', 4 => '80%', 5 => '100%' }
+    @category = { 'Acidente de Trânsito'=> 'bg-warning', 'Briga no Trânsito'=> 'bg-success', 'Briga na rua'=> 'bg-success', 'Briga Doméstica na rua'=> 'bg-success', 'Tráfico de Drogas'=> 'bg-info', 'Utilização de Drogas em via Pública'=> 'bg-primary', 'Furto'=> 'bg-warning', 'Assalto com arma de fogo'=> 'bg-danger'}
 
     @properties = @reports.geocoded.map do |report|
       {
@@ -100,6 +102,29 @@ class ReportsController < ApplicationController
   end
 
   private
+
+  def set_marker_color(report)
+    case report.category
+    when 'Acidente de Trânsito'
+      return 'orange_pin.png'
+    when 'Briga no Trânsito'
+      return 'dark_blue_pin.png'
+    when 'Briga na rua'
+      return 'dark_blue_pin.png'
+    when 'Briga Doméstica na rua'
+      return 'dark_blue_pin.png'
+    when 'Tráfico de Drogas'
+      return 'gold_pin.png'
+    when 'Utilização de Drogas em via Pública'
+      return 'light_blue_pin.png'
+    when 'Furto'
+      return 'orange_pin.png'
+    when 'Assalto com arma de fogo'
+      return 'red_pin.png'
+    else
+      return 'red_pin.png'
+    end
+  end
 
   def report_params
     params.require(:report).permit(:description, :category, :danger_level, :address, :photo)

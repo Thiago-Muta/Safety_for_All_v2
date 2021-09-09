@@ -9,19 +9,27 @@ const initReviewsCable = () => {
     consumer.subscriptions.create({ channel: "ReviewsChannel", id: id }, {
       received(data) {
 
-        const reportReviewCount = document.getElementById(`review-count-${data.report_id}`);
-        console.log(reportReviewCount)
-        if (reportReviewCount) { reportReviewCount.innerText = data.review_count };
+        // const reportReviewCount = document.querySelector(`#reviews-container-${data.report_id} #review-count`);
+        // console.log(reportReviewCount)
+        // if (reportReviewCount) {
+        //   reportReviewCount.innerText = data.review_count
+        // } else {
+        //   const reviewTitle = document.getElementById(`reviews-container-${data.report_id}`);
+        //   reviewTitle.innerHTML = '<p class="review-count">Total de comentarios: <span id="review-count">1</span></p>'
+        // }
 
         const noReviewsContainer = document.getElementById('no-reviews-container');
         if (noReviewsContainer) { noReviewsContainer.remove() };
+
+        const noReviewsTitle = document.getElementById('no-reviews');
+        if (noReviewsTitle) { noReviewsTitle.remove() };
 
         reviewsContainer.insertAdjacentHTML('beforeend', data.partial);
 
 
         if (data.review_count == 1) {
-          const reviewsCounter = `<strong>Total comentários: <span id="review-count"> ${data.review_count}</span></strong>`
-          reviewsContainer.insertAdjacentHTML('afterend', reviewsCounter);
+          const reviewsCounter = `<h2>ESSA DENÚNCIA POSSUI: <span id="review-count"> ${data.review_count}</span> COMENTÁRIO(S) </h2>`
+          reviewsContainer.insertAdjacentHTML('afterbegin', reviewsCounter);
         } else {
           const reviewCount = document.getElementById('review-count');
           reviewCount.innerText = data.review_count

@@ -17,13 +17,14 @@
       </div>
     </div>
 
-    <% if report.reviews.empty? %>
-      <div id="reviews-container" data-report-id='<%= report.id %>'>
-        <p id='no-reviews-container'>Sem comentários</p>
-      </div>
-    <% else %>
-      <p class="review-count">Total de comentarios: <span id="review-count"> <%= report.reviews.length %></span></p>
-    <% end %>
+    <%# <div id="reviews-container-<%= report.id" data-report-id='<%= report.id'> %>
+      <%# if report.reviews.empty? %>
+        <%# <p id='no-reviews-container'>Sem comentários</p> %>
+      <%# else %>
+        <%# <p class="review-count">Total de comentarios: <span id="review-count"> <%= report.reviews.length</span></p> %> 
+      <%# end %>
+    <%# </div> %>
+
   </div>
 </div>
 <%# ============================================================= %>

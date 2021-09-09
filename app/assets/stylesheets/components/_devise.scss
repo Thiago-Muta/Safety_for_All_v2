@@ -23,4 +23,19 @@
   font-weight: bold;
   padding: 15px;
   border-radius: 5px;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.assist-devise {
+  font-size: 12px;
+  margin-top: 10px;
+
+}
+.assist-devise a {
+  text-decoration: none;
+  &:hover {
+    color: #354566;
+  }
 }

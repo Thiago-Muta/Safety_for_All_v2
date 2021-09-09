@@ -30,6 +30,9 @@ class ReportsController < ApplicationController
         }
       }
     end
+
+    @markers = [{ lat: '-23.5513982', lng: '-46.6894532' }]
+
   end
 
   def show
@@ -82,7 +85,7 @@ class ReportsController < ApplicationController
   end
 
   def send_message
-    @report = Report.new(user: current_user, description: 'Estou em perigo!', category: 'Perigo imediato!', danger_level: 5, latitude: params[:latitude], longitude: params[:longitude])
+    @report = Report.new(user: current_user, description: 'Estou em perigo!', category: 'Panico', danger_level: 5, latitude: params[:latitude], longitude: params[:longitude])
     authorize @report
     if @report.save
       ActionCable.server.broadcast('reports', { action: 'create', json: @report, partial: render_to_string(partial: 'report.html.erb', locals: { report: @report })})

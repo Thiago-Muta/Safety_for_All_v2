@@ -24,18 +24,10 @@ class ReportsController < ApplicationController
         "geometry": {
           "type": "Point",
           "coordinates": [
-            report.latitude,
-            report.longitude
+            report.longitude,
+            report.latitude
           ]
         }
-      }
-    end
-
-    @markers = @reports.geocoded.map do |report|
-      {
-        lat: report.latitude,
-        lng: report.longitude,
-        info_window: render_to_string(partial: "reports/info_window", locals: { report: report, bars: @bars, category: @category })
       }
     end
   end
@@ -46,6 +38,13 @@ class ReportsController < ApplicationController
     if @report.nil?
       redirect_to reports_path
     else
+      @bars = { 0 => '0%', 1 => '20%', 2 => '40%', 3 => '60%', 4 => '80%', 5 => '100%'}
+      @category = { 'Acidente de Trânsito'=> 'bg-warning', 'Briga no Trânsito'=> 'bg-success', 'Briga na rua'=> 'bg-success', 'Briga Doméstica na rua'=> 'bg-success', 'Tráfico de Drogas'=> 'bg-info', 'Utilização de Drogas em via Publica'=> 'bg-info', 'Furto'=> 'bg-warning', 'Assalto com arma de fogo'=> 'bg-danger'}
+      @markers = [{
+        lat: @report.latitude,
+        lng: @report.longitude,
+        info_window: render_to_string(partial: "reports/info_window", locals: { report: @report, bars: @bars, category: @category })
+      }]
       @reviews = @report.reviews
     end
   end
@@ -86,6 +85,7 @@ class ReportsController < ApplicationController
     @report = Report.new(user: current_user, description: 'Estou em perigo!', category: 'Perigo imediato!', danger_level: 5, latitude: params[:latitude], longitude: params[:longitude])
     authorize @report
     if @report.save
+      ActionCable.server.broadcast('reports', { action: 'create', json: @report, partial: render_to_string(partial: 'report.html.erb', locals: { report: @report })})
       to = current_user.send_to_phone
       from = ENV['TWILIO_SMS_NUMBER']
       body = "Estou em perigo aqui #{report_url(@report)}"

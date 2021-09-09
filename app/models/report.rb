@@ -20,12 +20,14 @@ class Report < ApplicationRecord
       'brigarua.jpg'
     when 'Tráfico de Drogas'
       'traficodedrogas.jpg'
-    when 'Utilização de Drogas em via Publica'
+    when 'Utilização de Drogas em via Pública'
       'drogaspublicas.jpg'
     when 'Furto'
       'furto.jpg'
-    else 'Assalto com arma de fogo'
+    when 'Assalto com arma de fogo'
       'assalto.jpg'
+    else
+      'noimage.jpg'
     end
   end
 end

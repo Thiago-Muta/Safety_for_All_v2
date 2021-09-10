@@ -27,7 +27,7 @@ gem 'redis', '~> 4.0'
 gem 'cloudinary', '~> 1.16.0'
 gem 'geocoder'
 gem 'twilio-ruby', '~> 5.58.1'
-
+gem 'faker'
 
 
 # Reduces boot times through caching; required in config/boot.rb

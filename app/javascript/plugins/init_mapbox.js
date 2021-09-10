@@ -101,7 +101,7 @@ const initMapbox = () => {
               // increase intensity as zoom level increases
               'heatmap-intensity': {
                 stops: [
-                  [11, 1],
+                  [3, 1],
                   [15, 3]
                 ]
               },
@@ -124,8 +124,8 @@ const initMapbox = () => {
               // increase radius as zoom increases
               'heatmap-radius': {
                 stops: [
-                  [11, 15],
-                  [15, 20]
+                  [5, 15],
+                  [15, 27]
                 ]
               },
               // decrease opacity to transition into the circle layer
@@ -133,7 +133,7 @@ const initMapbox = () => {
                 default: 1,
                 stops: [
                   [14, 1],
-                  [15, 0]
+                  [15, 1]
                 ]
               }
 

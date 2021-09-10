@@ -1,3 +1,4 @@
+require 'faker'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -117,6 +118,138 @@ report47 = Report.create!(description: 'Tem alguem fumando maconha por aqui', ca
 report48 = Report.create!(description: 'Furtaram o meu chinelo', category: 'Furto', danger_level:'3', address:'Rua Padre José Garzotti, 342 - Cidade Dutra', latitude:'-23.71037504608548', longitude:'-46.701466134688125', user: user48)
 report49 = Report.create!(description: 'Carro estragou e causou acidente', category: 'Acidente de Trânsito', danger_level:'2', address:'Rua Turquesa, 30 - Jardim Capao Redondo', latitude:'-23.67736865799807', longitude:'-46.78283788253114', user: user49)
 report50 = Report.create!(description: 'Dois caminhoes cheio de droga', category: 'Tráfico de Drogas', danger_level:'5', address:'Rua Alvorada, 202 - Jardim Sao Eduardo, Embu das Artes', latitude:'-23.670149601803523', longitude:'-46.80260121018091', user: user50)
+
+50.times do |i|
+  lati = 51 + i
+  report = Report.create!(
+    description: Faker::ChuckNorris.fact,
+    category: ["Acidente de Trânsito", "Briga no Trânsito", "Briga na rua", "Briga Doméstica na rua", "Tráfico de Drogas", "Utilização de Drogas em via Pública", "Furto", "Assalto com arma de fogo"].sample,
+    danger_level: rand(1..5),
+    address: Faker::Address.street_address,
+    latitude: "-23.5#{lati}164466",
+    longitude: "-46.633664132",
+    user: [user1, user2, user3, user4, user5, user6].sample
+  )
+  puts "Primeiro report >> #{i} de 50"
+end
+
+sleep(60)
+
+50.times do |i|
+  lati = 51 - i
+  report = Report.create!(
+    description: Faker::ChuckNorris.fact,
+    category: ["Acidente de Trânsito", "Briga no Trânsito", "Briga na rua", "Briga Doméstica na rua", "Tráfico de Drogas", "Utilização de Drogas em via Pública", "Furto", "Assalto com arma de fogo"].sample,
+    danger_level: rand(1..5),
+    address: Faker::Address.street_address,
+    latitude: "-23.5#{lati}164466",
+    longitude: "-46.633664132",
+    user: [user1, user2, user3, user4, user5, user6].sample
+  )
+  puts "Segundo report >> #{i} de 50"
+end
+
+sleep(60)
+
+336.times do |i|
+  lati = 51 + i
+  long = 336 + i
+  report = Report.create!(
+    description: Faker::ChuckNorris.fact,
+    category: ["Acidente de Trânsito", "Briga no Trânsito", "Briga na rua", "Briga Doméstica na rua", "Tráfico de Drogas", "Utilização de Drogas em via Pública", "Furto", "Assalto com arma de fogo"].sample,
+    danger_level: rand(1..5),
+    address: Faker::Address.street_address,
+    latitude: "-23.5#{lati}164466",
+    longitude: "-46.6#{long}64132",
+    user: [user1, user2, user3, user4, user5, user6].sample
+  )
+  puts "Terceiro report >> #{i} de 336"
+end
+
+sleep(60)
+
+336.times do |i|
+  lati = 351 + i
+  long = 336 - i
+  report = Report.create!(
+    description: Faker::ChuckNorris.fact,
+    category: ["Acidente de Trânsito", "Briga no Trânsito", "Briga na rua", "Briga Doméstica na rua", "Tráfico de Drogas", "Utilização de Drogas em via Pública", "Furto", "Assalto com arma de fogo"].sample,
+    danger_level: rand(1..5),
+    address: Faker::Address.street_address,
+    latitude: "-23.5#{lati}164466",
+    longitude: "-46.6#{long}64132",
+    user: [user1, user2, user3, user4, user5, user6].sample
+  )
+  puts "Quarto report >> #{i} de 336"
+end
+
+sleep(60)
+
+300.times do |i|
+  lati = 51 + i
+  long = 636 - i
+  report = Report.create!(
+    description: Faker::ChuckNorris.fact,
+    category: ["Acidente de Trânsito", "Briga no Trânsito", "Briga na rua", "Briga Doméstica na rua", "Tráfico de Drogas", "Utilização de Drogas em via Pública", "Furto", "Assalto com arma de fogo"].sample,
+    danger_level: rand(1..5),
+    address: Faker::Address.street_address,
+    latitude: "-23.#{lati}9588",
+    longitude: "-46.#{long}820",
+    user: [user1, user2, user3, user4, user5, user6].sample
+  )
+  puts "Quinto report >> #{i} de 300"
+end
+
+sleep(60)
+
+300.times do |i|
+  lati = 51 + i
+  long = 636 + i
+  report = Report.create!(
+    description: Faker::ChuckNorris.fact,
+    category: ["Acidente de Trânsito", "Briga no Trânsito", "Briga na rua", "Briga Doméstica na rua", "Tráfico de Drogas", "Utilização de Drogas em via Pública", "Furto", "Assalto com arma de fogo"].sample,
+    danger_level: rand(1..5),
+    address: Faker::Address.street_address,
+    latitude: "-23.#{lati}9588",
+    longitude: "-46.#{long}820",
+    user: [user1, user2, user3, user4, user5, user6].sample
+  )
+  puts "Sexto report >> #{i} de 300"
+end
+
+sleep(60)
+
+300.times do |i|
+  lati = 351 - i
+  long = 636 + i
+  report = Report.create!(
+    description: Faker::ChuckNorris.fact,
+    category: ["Acidente de Trânsito", "Briga no Trânsito", "Briga na rua", "Briga Doméstica na rua", "Tráfico de Drogas", "Utilização de Drogas em via Pública", "Furto", "Assalto com arma de fogo"].sample,
+    danger_level: rand(1..5),
+    address: Faker::Address.street_address,
+    latitude: "-23.#{lati}9588",
+    longitude: "-46.#{long}820",
+    user: [user1, user2, user3, user4, user5, user6].sample
+  )
+  puts "Sétimo report >> #{i} de 300"
+end
+
+sleep(60)
+
+300.times do |i|
+  lati = 351 - i
+  long = 636 - i
+  report = Report.create!(
+    description: Faker::ChuckNorris.fact,
+    category: ["Acidente de Trânsito", "Briga no Trânsito", "Briga na rua", "Briga Doméstica na rua", "Tráfico de Drogas", "Utilização de Drogas em via Pública", "Furto", "Assalto com arma de fogo"].sample,
+    danger_level: rand(1..5),
+    address: Faker::Address.street_address,
+    latitude: "-23.#{lati}9588",
+    longitude: "-46.#{long}820",
+    user: [user1, user2, user3, user4, user5, user6].sample
+  )
+  puts "Oitavo report >> #{i} de 300"
+end
 
 puts "Creating reviews"
 review1 = Review.create!(content: 'O motorista saiu correndo', user: user50, report: report1)

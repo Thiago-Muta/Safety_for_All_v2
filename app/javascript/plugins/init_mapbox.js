@@ -46,9 +46,10 @@ const initMapbox = () => {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/thiago690/ckta82lr9224k17mm42jbzaty'
+      style: 'mapbox://styles/thiago690/ckt0ik1gy01kg17pdzfw2e6a1'
     });
-// mapbox://styles/thiago690/ckt0ik1gy01kg17pdzfw2e6a1
+// 'mapbox://styles/thiago690/ckt0ik1gy01kg17pdzfw2e6a1'  Mapa claro
+// 'mapbox://styles/thiago690/ckta82lr9224k17mm42jbzaty'  mapa escuro
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl }));
     if (mapElement.dataset.markers != 'null') {

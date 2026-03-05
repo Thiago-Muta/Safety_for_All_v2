@@ -1,7 +1,10 @@
 projeto final original apresentado
-ruby v 2.7.3
-instalar versoes dos programas para rodar
 
+ruby v 2.7.3
+
+instalar versoes antigas dos programas para rodar
+
+usar token do mapbox no .env (MAPBOX_API_KEY=############################)
 
 
 
